@@ -52,7 +52,7 @@ const userMap: UserMap[] = [
 ];
 
 export default {
-  loginByUsername: (config: MockConfig, res: any) => {
+  loginByUsername: (config: MockConfig) => {
     const { username, password, authCode } = qs.parse(config.body);
     const user = userMap.filter(item => item.username === username);
 
@@ -60,23 +60,20 @@ export default {
       const now = new Date();
       now.setDate(now.getDate() + 1);
       const data = baseData('success', '登录成功');
-      res.cookie('token', JSON.stringify({ id: user[0].id, deadline: now.getTime() }), {
-        maxAge: 900000,
-        httpOnly: true,
-      });
+      data.entity = {
+        token: JSON.stringify({ id: user[0].id, deadline: now.getTime() }),
+      };
       return data;
     }
     return baseData('error', '用户名密码错误');
   },
-  getUserInfo: (req: MockConfig, res: any) => {
-    const cookie = req.headers.cookie || '';
-    const cookies = qs.parse(cookie.replace(/\s/g, ''), { delimiter: ';' });
+  getUserInfo: (req: MockConfig) => {
+    const { token } = qs.parse(req.body);
     const response: any = {};
     const user: any = {};
-    if (!cookies.token) {
+    if (!token) {
       return baseData('error', '登录超时', 3);
     }
-    const token = JSON.parse(cookies.token);
     if (token) {
       response.success = token.deadline > new Date().getTime();
     }
