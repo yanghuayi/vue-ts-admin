@@ -1,0 +1,55 @@
+.app-main {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  display: flex;
+  .page-content {
+    width: e('calc(100vw - 200px)');
+    height: 100vh;
+    position: relative;
+    padding-top: 56px;
+    overflow-y: auto;
+    .page-wrap {
+      height: e('calc(100vh - 98px)');
+      width: 100%;
+      overflow-x: hidden;
+      overflow: auto; 
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .page-content {
+      width: 100vw;
+    }
+  }
+  &.sideLayout {
+    .side-bar {
+      min-width: 64px;
+      width: 64px;
+      .logo-wrap h1{
+        display: none;
+      }
+    }
+    .page-content {
+      width: e('calc(100vw - 64px)');
+    }
+  }
+  .page-tabs {
+    text-align: left;
+    .ant-tabs-bar {
+      margin-bottom: 0;
+    }
+    .el-tabs__header {
+      margin-bottom: 0;
+      .el-tabs__nav {
+        border: none;
+      }
+      .el-tabs__item {
+        background-color: #ececec;
+        &.is-active {
+          background-color: #fff;
+        }
+      }
+    }
+  }
+}

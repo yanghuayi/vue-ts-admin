@@ -1,0 +1,246 @@
+@import '../../styles/var.less';
+.container {
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  padding: 7px;
+  overflow: auto;
+  .monitorArea {
+    height: 280px;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background: url('../../assets/cqCenter.png') no-repeat;
+    overflow: hidden;
+    background-size:cover;
+    position: relative;
+    .monitorCenter {
+      height: 280px;
+      width: 80%;
+      margin: 20px auto; 
+      position: relative;
+      padding: 40px 100px 40px 80px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: space-around;
+      .mountNode {
+        margin-top: -30px;
+      }
+      .title {
+        white-space:nowrap; 
+        font-weight: 700;
+        font-size: 20px;
+        margin-top: 80px;
+        margin-left: -40px;
+      }
+    }
+    .mask{
+      width: 100%;
+      height: 100%;
+      background: #ffffff;
+      opacity: 0.5;
+      position: absolute;
+    }
+    .openLink {
+      position: absolute;
+      right: 20px;
+      bottom: 20px;
+      z-index: 999;
+    }
+  }
+  .driveArea {
+    min-height: 540px;
+    float: left;
+    width: e("calc(100% - 312px)");
+    border: 1px solid #CCCCCC;
+    background: #ffffff;
+    border-radius: 5px;
+    margin-right: 10px;
+    box-sizing: border-box;
+    padding: 5px 20px;
+    position: relative;
+    .title {
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 20px;
+      padding: 12px 0;
+      border-bottom: 1px solid #cccccc;
+      margin-bottom: 20px;
+    }
+    .timeSet {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      display: flex;
+      .normalTime {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .item {
+          margin-right: 15px;
+          line-height: 16px;
+          cursor: pointer;
+        }
+        .active {
+          transition: font-size .2s, color .2s;
+          font-size: 15px;
+          color: @primary-color;
+        }
+      }
+      .datePicker {
+        width: 200px;
+      }
+      .el-range-editor--mini .el-range-separator {
+        width: 30px;
+      }
+      .el-range-editor--mini .el-range-input {
+        width: 70px;
+      }
+    }
+    .driveBox {
+      display: flex;
+      .leftPart {
+        margin-right: 20px;
+        display: inline-block;
+        width: e("calc(100% - 380px)");
+        position: relative;
+        .top {
+          display: flex;
+          justify-content: space-between;
+          .item {
+            width: 90px;
+            height: 56px;
+            border-radius: 5px;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            justify-content: space-around;
+            box-sizing: border-box;
+            font-weight: bold;
+            color: #ffffff;
+          }
+          .item:nth-child(1){
+            background-color: #F69899;
+          }
+          .item:nth-child(2){
+            background-color: #D897EC;
+          }
+          .item:nth-child(3){
+            background-color: #64EA91;
+          }
+          .item:nth-child(4){
+            background-color: #F8C82E;
+          }
+          .item:nth-child(5){
+            background-color: #00CA68;
+          }
+        }
+        .columnar {
+          width: 100%;
+          position: absolute;
+          top: 88px;
+          left: -22px;
+        }
+      }
+      .rightPart {
+        width: 360px;
+        display: inline-block;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .item {
+          list-style: none;
+          border: 1px solid black;
+          border-radius: 5px;
+          display: inline-block;
+          width: 100%;
+          height: 60px;
+          margin-bottom: 22px;
+          display: flex;
+          padding: 5px;
+          box-sizing: border-box;
+          .name {
+            position: relative;
+            padding: 0 10px;
+            width: 78px;
+            text-align: center;
+            font-weight: bold;
+            box-sizing: border-box;
+            line-height: 50px;
+            font-size: 14px;
+            border-right: 2px solid #333333;
+            .arrow {
+              position: absolute;
+              top: 20px;
+              left: 72px;
+              display: inline-block;
+              transform: rotate(-90deg);
+            }
+            .arrowColor {
+              border-top: 10px solid black;
+              border-left: 10px solid white;
+              border-right: 10px solid white;
+            }
+          }
+          .carList {
+            display: flex;
+            justify-content: space-between;
+            .carDetail {
+              width: 80px;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              text-align: center;
+              justify-content: space-around;
+              box-sizing: border-box;
+              margin-left: 10px;
+            }
+          }
+        }
+        .item:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+    
+  }
+  .alarmArea {
+    width: 300px;
+    min-height: 540px;
+    background: #ffffff;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    float: left;
+    box-sizing: border-box;
+    padding: 10px 40px;
+    .title {
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 20px;
+      padding: 12px 0;
+      border-bottom: 1px solid #cccccc;
+    }
+    .alarmData {
+      list-style: none;
+      .alarmItem {
+        margin: 25px 0 ;
+        font-size: 14px;
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+  .openInfo {
+    text-align: center;
+    .title {
+      font-size: 16px;
+    }
+    .key {
+      font-size: 16px;
+      margin: 10px 0 30px 0;
+      font-weight: bold;
+    }
+  }
+}

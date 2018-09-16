@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <title>vue-car-admin</title>
+</head>
+
+<body>
+  <noscript>
+    <strong>
+      We're sorry but vue-car-admin doesn't work properly without JavaScript enabled.
+       Please enable it to continue.
+    </strong>
+  </noscript>
+  <div id="app"></div>
+  <script src="https://unpkg.com/wangeditor/release/wangEditor.min.js"></script>
+  <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g2-3.2.7-beta.4/dist/g2.min.js"></script>
+  <!-- built files will be auto injected -->
+  <script>
+    Date.prototype.Format = function (fmt) {
+      var o = {
+        "M+": this.getMonth() + 1,
+        "d+": this.getDate(),
+        "h+": this.getHours(),
+        "m+": this.getMinutes(),
+        "s+": this.getSeconds(),
+        "q+": Math.floor((this.getMonth() + 3) / 3),
+        "S": this.getMilliseconds()
+      };
+      if (/(y+)/.test(fmt))
+        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+      for (var k in o)
+        if (new RegExp("(" + k + ")").test(fmt))
+          fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+      return fmt;
+    }
+  </script>
+</body>
+
+</html>
