@@ -10,6 +10,7 @@ module.exports = {
   ],
   rules: {
     'new-cap': 'off',
+    'no-plusplus': 'off',
     'guard-for-in': 'off',
     'prefer-destructuring': 'off',
     'prefer-promise-reject-errors': 'off',

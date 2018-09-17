@@ -14,15 +14,35 @@ import './index.less';
   }
   })
 export default class Dashboard extends Vue {
+  lineChartData: any = [];
   created() {
     window.api.dashboard(null).then((res: returnData) => {
-      const { totalSalesList } = res.data;
+      const { projections, actuals } = res.data;
+      this.lineChartData = projections.concat(actuals);
+      this.init();
     });
   }
   totalSalesList: any = []
 
   totalSalesChart: any = null
   init() {
+    const { Global } = window.G2; // 获取 Global 全局对象
+    Global.registerTheme('newTheme', {
+      colors: ['#3154e7', '#e3eaef', 'yellow'],
+    });
+    const chart = new window.G2.Chart({
+      container: 'lineChart',
+      forceFit: true,
+      height: 254,
+      padding: 30,
+      theme: 'newTheme',
+    });
+    chart.source(this.lineChartData);
+    chart.interval().position('time*value').color('name').adjust([{
+      type: 'dodge',
+      marginRatio: 1 / 32,
+    }]);
+    chart.render();
   }
 
   ColLayout: any = {
@@ -36,7 +56,7 @@ export default class Dashboard extends Vue {
     return (
       <div class="container">
         <a-row gutter={{ xs: 8, md: 12, xl: 20 }} class="dash-col">
-          <a-col span={8}>
+          <a-col span={10}>
             <a-row gutter={{ xs: 8, md: 12, xl: 20 }}>
               <a-col {...{ props: this.ColLayout }} class="sub-item">
                 <a-card class="dash-card">
@@ -96,7 +116,34 @@ export default class Dashboard extends Vue {
               </a-col>
             </a-row>
           </a-col>
-          <a-col span={14}></a-col>
+          <a-col span={14}>
+            <a-card class="dash-line-chart">
+              <a-icon class="opreat" type="ellipsis"></a-icon>
+              <h2 class="title">PROJECTIONS VS ACTUALS</h2>
+              <div id="lineChart"></div>
+            </a-card>
+          </a-col>
+        </a-row>
+        <a-row gutter={{ xs: 8, md: 12, xl: 20 }}>
+          <a-col span={16}>
+            <a-card class="revenue-chart">
+              <h2 class="title">REVENUE</h2>
+              <a-icon class="opreat" type="ellipsis"></a-icon>
+              <div class="week-data">
+                <div class="item">
+                  <h4 className="item-title">Current Week</h4>
+                  <p className="number">$58,254</p>
+                </div>
+                <div class="item">
+                  <h4 className="item-title">Previous Week</h4>
+                  <p className="number">$69,524</p>
+                </div>
+              </div>
+            </a-card>
+          </a-col>
+          <a-col span={8}>
+
+          </a-col>
         </a-row>
       </div>
     );
