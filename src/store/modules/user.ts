@@ -1,4 +1,3 @@
-import { getUserInfo } from '@/api/app';
 import config from '@/utils/config';
 import router, { asyncRouterMap, constantRouterMap } from '@/router';
 import { routerItem } from '@/interface';
@@ -65,15 +64,16 @@ const user = {
         token: localStorage.getItem('token'),
       };
       context.commit('LOADING', false);
-      getUserInfo(params).then(({ result, entity }) => {
+      window.api.getUserInfo(params).then((res: returnData) => {
         context.commit('LOADING', true);
+        const { result, entity } = res.data;
         if (!result.resultCode) {
           if (config.noLoginList.indexOf(window.location.hash) > -1) {
-            router.replace({ path: '/login' });
+            router.replace({ path: '/dashboard' });
           }
           const userData: UserData = {
             username: entity.username,
-            userid: entity.userid,
+            userid: entity.id,
             avatarUri: entity.avatar_uri,
             email: entity.email,
           };
@@ -85,7 +85,7 @@ const user = {
         } else {
           reject(result.resultMessage);
         }
-      }).catch((error) => {
+      }).catch((error: any) => {
         context.commit('LOADING', true);
         reject(error);
       });

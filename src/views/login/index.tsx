@@ -3,18 +3,18 @@ import {
   Emit,
   Vue,
 } from 'vue-property-decorator';
-import { Form, Button, Input } from 'ant-design-vue';
-import { login } from '@/api/app';
+import { Form, Button, Input, Icon } from 'ant-design-vue';
 import config from '@/utils/config';
 
 import './login.less';
 
 @Component({
   components: {
-  "a-form": Form,
-  "a-form-item": Form.Item,
-  "a-button": Button,
-  "a-input": Input
+  'a-form': Form,
+  'a-form-item': Form.Item,
+  'a-button': Button,
+  'a-input': Input,
+  'a-icon': Icon,
   },
   props: {
   Form,
@@ -25,10 +25,6 @@ class Login extends Vue {
     username: string;
     password: string;
   } = { username: '', password: '' };
-  loginRules = {
-    username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
-    password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
-  };
   config = config;
   imgToken = '';
   loading = false;
@@ -39,21 +35,21 @@ class Login extends Vue {
     this.Form.validateFields((err: any, values: object) => {
       if (!err) {
         this.loading = true;
-        login({ ...values }).then((res) => {
+        window.api.login({ ...values }).then((res: returnData) => {
           this.loading = false;
-          const { result: { resultCode, resultMessage }, entity } = res;
-          if (resultCode !== '0') {
-            this.$message.error(resultMessage || '未知错误');
+          const { result: { resultCode, resultMessage }, entity } = res.data;
+          if (resultCode !== 0) {
+            this.$message.error(resultMessage || 'unkown error');
           } else {
             this.$message.success(resultMessage);
-            localStorage.setItem('token', entity);
+            localStorage.setItem('token', entity.token);
             this.$store.dispatch('getUserInfo').then(() => {
               this.$router.push('/');
             }).catch((error) => {
               this.$message.error(error);
             });
           }
-        }).catch((errs) => {
+        }).catch((errs: any) => {
           this.loading = false;
           this.$message.error(errs.message);
         });
@@ -64,41 +60,58 @@ class Login extends Vue {
   }
 
   render() {
+    const { getFieldDecorator } = this.Form;
     return (
       <div class="loginWrap">
-        <h2 class="loginTxt">欢迎使用<br/>VUE-TS-ADMIN</h2>
+        <h2 class="loginTxt">WELCOME<br/>VUE-TS-ADMIN</h2>
         <div class="loginForm">
           <div class="logo">
             <img alt="logo" src={require('../../assets/logo.svg')} />
             <span>{config.name}</span>
           </div>
           <a-form ref="loginForm" on-submit={this.submitForm}>
-            <a-form-item prop="username">
-              <a-input
+            <a-form-item>
+              {
+                getFieldDecorator('username', {
+                  rules: [
+                    { required: true, message: 'Please enter a user name' },
+                  ],
+                })(<a-input
                 id="username"
                 prefix-icon="iconfont-user"
-                placeholder="请输入用户名"
-              />
+                placeholder="Please enter a user name"
+              >
+                <a-icon slot="prefix" type='user'/>
+              </a-input>)
+              }
             </a-form-item>
-            <a-form-item prop="password">
-              <a-input
-                id="password"
-                prefix-icon="iconfont-lock"
-                type="password"
-                placeholder="请输入密码"
-              />
+            <a-form-item>
+              {
+                getFieldDecorator('password', {
+                  rules: [
+                    { required: true, message: 'Please enter a password' },
+                  ],
+                })(<a-input
+                  id="password"
+                  prefix-icon="iconfont-lock"
+                  type="password"
+                  placeholder="Please enter a user name"
+              >
+                <a-icon slot="prefix" type='lock'/>
+              </a-input>)
+              }
             </a-form-item>
             <a-form-item>
               <a-button
                 loading={this.loading}
                 type="primary"
                 on-click={this.submitForm}
-              >登录</a-button>
+              >Login</a-button>
             </a-form-item>
           </a-form>
           <div class="tips">
-            <span>用户名：admin</span>
-            <span class="right">密码：admin</span>
+            <span>username：admin</span>
+            <span class="right">password：admin</span>
           </div>
         </div>
       </div>

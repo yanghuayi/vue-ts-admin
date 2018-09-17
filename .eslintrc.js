@@ -10,6 +10,9 @@ module.exports = {
   ],
   rules: {
     'new-cap': 'off',
+    'guard-for-in': 'off',
+    'prefer-destructuring': 'off',
+    'prefer-promise-reject-errors': 'off',
     'camelcase': 'off',
     'eslint-import-resolver-typescript': {
       'extensions': ['.ts', '.tsx', '.d.ts']

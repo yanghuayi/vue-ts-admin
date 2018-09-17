@@ -9,6 +9,8 @@ interface UserMap {
   username: string,
   password: string,
   permissions: Premission,
+  email: string,
+  avatar_uri: string,
 }
 interface Premission {
   role: string,
@@ -38,22 +40,28 @@ const userMap: UserMap[] = [
     username: 'admin',
     password: 'admin',
     permissions: userPermission[0],
+    email: 'admin@gmail.com',
+    avatar_uri: 'xxx',
   }, {
     id: 1,
     username: 'guest',
     password: 'guest',
     permissions: userPermission[1],
+    email: 'guest@gmail.com',
+    avatar_uri: 'xxx',
   }, {
     id: 2,
-    username: '吴彦祖',
+    username: 'editor',
     password: '123456',
     permissions: userPermission[2],
+    email: 'editor@gmail.com',
+    avatar_uri: 'xxx',
   },
 ];
 
 export default {
   loginByUsername: (config: MockConfig) => {
-    const { username, password, authCode } = qs.parse(config.body);
+    const { username, password } = qs.parse(config.body);
     const user = userMap.filter(item => item.username === username);
 
     if (user.length > 0 && user[0].password === password) {
@@ -68,12 +76,13 @@ export default {
     return baseData('error', '用户名密码错误');
   },
   getUserInfo: (req: MockConfig) => {
-    const { token } = qs.parse(req.body);
+    let { token } = qs.parse(req.body);
     const response: any = {};
     const user: any = {};
     if (!token) {
       return baseData('error', '登录超时', 3);
     }
+    token = JSON.parse(token);
     if (token) {
       response.success = token.deadline > new Date().getTime();
     }
@@ -83,6 +92,8 @@ export default {
         user.permissions = userItem[0].permissions;
         user.username = userItem[0].username;
         user.id = userItem[0].id;
+        user.email = userItem[0].email;
+        user.avatar_uri = userItem[0].avatar_uri;
       }
       const data = baseData('success', '获取成功');
       data.entity = user;
