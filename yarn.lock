@@ -682,6 +682,10 @@
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.0.tgz#50c1e2260ac0ed9439a181de3725a0168d59c48a"
 
+"@types/chart.js@^2.7.34":
+  version "2.7.34"
+  resolved "http://registry.npm.taobao.org/@types/chart.js/download/@types/chart.js-2.7.34.tgz#8d2ab3fa362ce87f668811688a30358b8d0fba98"
+
 "@types/jsonp@^0.2.0":
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@types/jsonp/-/jsonp-0.2.0.tgz#2579c5e4dfa6b2617bda18a5d368db2dbfe132a8"
@@ -1709,6 +1713,10 @@ camelcase-keys@^2.0.0:
     camelcase "^2.0.0"
     map-obj "^1.0.0"
 
+camelcase@^1.2.1:
+  version "1.2.1"
+  resolved "http://registry.npm.taobao.org/camelcase/download/camelcase-1.2.1.tgz#9bb5304d2e0b56698b2c758b08a3eaa9daa58a39"
+
 camelcase@^2.0.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-2.1.1.tgz#7c1d16d679a1bbe59ca02cacecfb011e201f5a1f"
@@ -1759,6 +1767,26 @@ chalk@^2.0.0, chalk@^2.0.1, chalk@^2.1.0, chalk@^2.3.0, chalk@^2.3.1, chalk@^2.3
 chardet@^0.4.0:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/chardet/-/chardet-0.4.2.tgz#b5473b33dc97c424e5d98dc87d55d4d8a29c8bf2"
+
+chart.js@^2.7.2:
+  version "2.7.2"
+  resolved "http://registry.npm.taobao.org/chart.js/download/chart.js-2.7.2.tgz#3c9fde4dc5b95608211bdefeda7e5d33dffa5714"
+  dependencies:
+    chartjs-color "^2.1.0"
+    moment "^2.10.2"
+
+chartjs-color-string@^0.5.0:
+  version "0.5.0"
+  resolved "http://registry.npm.taobao.org/chartjs-color-string/download/chartjs-color-string-0.5.0.tgz#8d3752d8581d86687c35bfe2cb80ac5213ceb8c1"
+  dependencies:
+    color-name "^1.0.0"
+
+chartjs-color@^2.1.0:
+  version "2.2.0"
+  resolved "http://registry.npm.taobao.org/chartjs-color/download/chartjs-color-2.2.0.tgz#84a2fb755787ed85c39dd6dd8c7b1d88429baeae"
+  dependencies:
+    chartjs-color-string "^0.5.0"
+    color-convert "^0.5.3"
 
 check-types@^7.3.0:
   version "7.4.0"
@@ -1884,6 +1912,10 @@ collection-visit@^1.0.0:
   dependencies:
     map-visit "^1.0.0"
     object-visit "^1.0.0"
+
+color-convert@^0.5.3:
+  version "0.5.3"
+  resolved "http://registry.npm.taobao.org/color-convert/download/color-convert-0.5.3.tgz#bdb6c69ce660fadffe0b0007cc447e1b9f7282bd"
 
 color-convert@^1.9.0, color-convert@^1.9.1:
   version "1.9.2"
@@ -4763,7 +4795,7 @@ mockjs@^1.0.1-beta3:
   dependencies:
     commander "*"
 
-moment@^2.21.0, moment@^2.22.2:
+moment@^2.10.2, moment@^2.21.0, moment@^2.22.2:
   version "2.22.2"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.2.tgz#3c257f9839fc0e93ff53149632239eb90783ff66"
 
@@ -7011,6 +7043,12 @@ upper-case@^1.1.1:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/upper-case/-/upper-case-1.1.3.tgz#f6b4501c2ec4cdd26ba78be7222961de77621598"
 
+uppercamelcase@^1.1.0:
+  version "1.1.0"
+  resolved "http://registry.npm.taobao.org/uppercamelcase/download/uppercamelcase-1.1.0.tgz#324d98a6b3afc7e8a8953e10641509b0e4e23f97"
+  dependencies:
+    camelcase "^1.2.1"
+
 uri-js@^4.2.1:
   version "4.2.2"
   resolved "https://registry.yarnpkg.com/uri-js/-/uri-js-4.2.2.tgz#94c540e1ff772956e2299507c010aea6c8838eb0"
@@ -7118,6 +7156,12 @@ vm-browserify@0.0.4:
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-0.0.4.tgz#5d7ea45bbef9e4a6ff65f95438e0a87c357d5a73"
   dependencies:
     indexof "0.0.1"
+
+vue-amap@^0.5.8:
+  version "0.5.8"
+  resolved "http://registry.npm.taobao.org/vue-amap/download/vue-amap-0.5.8.tgz#8d866e39c037b31c85ff7ddc58fcb5aef03c3b6c"
+  dependencies:
+    uppercamelcase "^1.1.0"
 
 vue-class-component@^6.0.0, vue-class-component@^6.2.0:
   version "6.2.0"

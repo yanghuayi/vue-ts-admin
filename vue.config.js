@@ -1,3 +1,4 @@
+const Mock = require('./src/mock/index');
 module.exports = {
   chainWebpack: (config) => {
     'use strict';
@@ -31,16 +32,19 @@ module.exports = {
       },
     },
   },
-  // devServer: {
-  //   proxy: {
-  //     '/api': {
-  //       target: 'http://192.168.6.194:5555/', // 开发环境地址
-  //       changeOrigin: true,
-  //       pathRewrite: {
-  //         '^/api': '',
-  //       },
-  //     },
-  //   },
-  // },
+  devServer: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8080/api/', // 开发环境地址
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': '',
+        },
+      },
+    },
+    setup(app) {
+      Mock(app);
+    },
+  },
 };
 

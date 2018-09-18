@@ -9,8 +9,6 @@ import store from '@/store';
 import config from '@/utils/config';
 import Api from '@/api/api';
 
-import '@/mock';
-
 import './styles/global.less';
 
 // 全局api

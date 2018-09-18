@@ -31,17 +31,17 @@ export default class Api {
   // 请求列表，在这里添加相应接口
   apiList: ApiList = {
     login: {
-      url: '/sys/user/login',
+      url: '/user/login',
       fetchType: 'from',
       method: 'post',
     },
     logout: {
-      url: '/sys/user/logout',
+      url: '/user/logout',
       fetchType: 'from',
       method: 'post',
     },
     getUserInfo: {
-      url: '/sys/user/getUserInfo',
+      url: '/user/getUserInfo',
       fetchType: 'from',
       method: 'post',
     },
