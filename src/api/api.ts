@@ -2,7 +2,7 @@ import axios from 'axios';
 import qs from 'qs';
 import jsonp from 'jsonp';
 import lodash from 'lodash';
-import pathToRegexp from 'path-to-regexp';
+import router from '@/router/index';
 import { message } from 'ant-design-vue';
 
 interface ApiList {
@@ -81,13 +81,13 @@ export default class Api {
       };
     }
     // 登录超时判断
-    // if (response.data.result && response.data.result.resultCode === 3) {
-    //   window.location.reload()
-    //   return Promise.reject({
-    //     success: false,
-    //     message: response.data.result.resultMessage
-    //   })
-    // }
+    if (response.data.result && response.data.result.resultCode === 3) {
+      router.replace('/login');
+      return Promise.reject({
+        success: false,
+        message: response.data.result.resultMessage,
+      });
+    }
     return Promise.resolve({
       success: true,
       message: statusText,

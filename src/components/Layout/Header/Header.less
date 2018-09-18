@@ -20,8 +20,8 @@
     transition: .3s all ease-in-out;
     cursor: pointer;
     &:hover {
-      color: #1890ff;
-      background-color: rgba(24,144,255,.15);
+      color: @primary-color;
+      background-color: lighten(@primary-color, 25%);
     }
   }
   .header-bread {
@@ -44,7 +44,7 @@
       }
       &:hover {
         color: @primary-color;
-        background-color: rgba(24,144,255,.15);
+        background-color: lighten(@primary-color, 25%);
         .el-dropdown-link {
           color: @primary-color;
         }

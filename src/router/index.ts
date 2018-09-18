@@ -35,12 +35,13 @@ export const constantRouterMap: routerItem[] & RouterOptions['routes'] = [
  * Boolean值的情况，为true，有权限，为false，没有权限
  * Array值的情况，只要其中一个有，就有权限，
  * String值，会匹配vuex里面的perssions数组，如果有，就有权限
+ * meta.key 这个是用来匹配缓存的，请确保key值和对应页面的class名称一致，否则页面无法正常缓存
 */
 export const asyncRouterMap: routerItem[] = [
   {
     path: '/dashboard',
     icon: 'dashboard',
-    name: 'dashboard',
+    name: 'Dashboard',
     component: getComponent('dashboard/index'),
     permission: true,
     meta: { key: 'Dashboard' },
