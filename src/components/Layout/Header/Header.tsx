@@ -1,5 +1,6 @@
 import { Component, Prop, Emit, Vue, Watch } from 'vue-property-decorator';
 import { Badge, Dropdown, Breadcrumb, Popover, Icon, Menu } from 'ant-design-vue';
+import Cookies from 'js-cookie';
 import { menuItem, routerItem } from '@/interface';
 import utils from '@/utils';
 import MenuList from '@/components/Layout/Sidebar/MenuList';
@@ -70,7 +71,7 @@ export default class Header extends Vue {
       case '2':
         break;
       case '3':
-        localStorage.removeItem('token');
+        Cookies.remove('token');
         this.$router.push('/login');
         break;
       default:

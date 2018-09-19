@@ -68,9 +68,6 @@ const user = {
         context.commit('LOADING', true);
         const { result, entity } = res.data;
         if (!result.resultCode) {
-          if (config.noLoginList.indexOf(window.location.hash) > -1) {
-            router.replace({ path: '/dashboard' });
-          }
           const userData: UserData = {
             username: entity.username,
             userid: entity.id,

@@ -32,22 +32,22 @@ export default class Api {
   apiList: ApiList = {
     login: {
       url: '/user/login',
-      fetchType: 'from',
+      fetchType: 'json',
       method: 'post',
     },
     logout: {
       url: '/user/logout',
-      fetchType: 'from',
+      fetchType: 'json',
       method: 'post',
     },
     getUserInfo: {
       url: '/user/getUserInfo',
-      fetchType: 'from',
+      fetchType: 'json',
       method: 'post',
     },
     dashboard: {
       url: '/dashboard',
-      fetchType: 'from',
+      fetchType: 'json',
       method: 'post',
     },
   }
@@ -82,7 +82,7 @@ export default class Api {
     }
     // 登录超时判断
     if (response.data.result && response.data.result.resultCode === 3) {
-      router.replace('/login');
+      router.replace({ name: 'login' });
       return Promise.reject({
         success: false,
         message: response.data.result.resultMessage,

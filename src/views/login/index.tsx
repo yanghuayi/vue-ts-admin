@@ -42,7 +42,6 @@ class Login extends Vue {
             this.$message.error(resultMessage || 'unkown error');
           } else {
             this.$message.success(resultMessage);
-            localStorage.setItem('token', entity.token);
             this.$store.dispatch('getUserInfo').then(() => {
               this.$router.push('/');
             }).catch((error) => {

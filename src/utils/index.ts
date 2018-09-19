@@ -43,8 +43,13 @@ function levelcodeToArray(levelcode: string) {
   return ret;
 }
 
+function numFormat(num: number) {
+  return num.toString().replace(/(\d{1,3})(?=(\d{3})+$)/g, '$1,');
+}
+
 export default {
   param2Obj,
   levelcodeToArray,
   routeToArray,
+  numFormat,
 };

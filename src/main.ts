@@ -32,15 +32,16 @@ router.beforeEach((to, from, next) => {
   if (!store.state.app.menuData.length && flag) { // 判断是否获取到菜单数据,并且只执行一次
     flag = false;
     store.dispatch('getUserInfo').then(() => {
-      store.dispatch('AddTabPane', to.path).then(() => {
+      const toPath = config.noLoginList.indexOf(`#${to.path}`) > -1 ? '/dashboard' : to.path;
+      store.dispatch('AddTabPane', toPath).then(() => {
         next({
-          path: to.path, query: to.query, params: to.params, replace: true,
+          path: toPath, query: to.query, params: to.params, replace: true,
         });
       });
     }).catch((err) => {
       console.log(err);
       if (config.noLoginList.indexOf(to.path) < 0) {
-        next({ name: '登录', replace: true });
+        next({ name: 'login', replace: true });
       }
       next();
     });

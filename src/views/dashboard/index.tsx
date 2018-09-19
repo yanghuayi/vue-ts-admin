@@ -1,6 +1,7 @@
 import { Component, Vue, Emit } from 'vue-property-decorator';
 import { Button, DatePicker, Modal, Row, Col, Card, Icon, Radio } from 'ant-design-vue';
 import Chart from 'chart.js';
+import utils from '@/utils/index';
 import { tableList } from '@/interface';
 
 import './index.less';
@@ -52,13 +53,14 @@ export default class Dashboard extends Vue {
   //     },
   //   },
   // ]
-  BarChartData: any = [];
-  lineChartData: any = [];
+  pageData: any = null;
   created() {
     window.api.dashboard(null).then((res: returnData) => {
-      const { projections, actuals } = res.data;
-      this.BarChartData = projections.concat(actuals);
-      this.init();
+      this.pageData = res.data.entity;
+      this.loading = false;
+      setTimeout(() => {
+        this.init();
+      }, 200);
     });
   }
   init() {
@@ -90,14 +92,14 @@ export default class Dashboard extends Vue {
           borderColor: a,
           hoverBackgroundColor: a,
           hoverBorderColor: a,
-          data: [65, 59, 80, 81, 56, 89, 40, 32, 65, 59, 80, 81],
+          data: this.pageData.projections,
         }, {
           label: 'actuals',
           backgroundColor: '#e3eaef',
           borderColor: '#e3eaef',
           hoverBackgroundColor: '#e3eaef',
           hoverBorderColor: '#e3eaef',
-          data: [89, 40, 32, 65, 59, 80, 81, 56, 89, 40, 65, 59],
+          data: this.pageData.actuals,
         }],
       },
       options: {
@@ -139,13 +141,13 @@ export default class Dashboard extends Vue {
           label: 'Current Week',
           backgroundColor: 'transparent',
           borderColor: '#727cf5',
-          data: [32, 42, 42, 62, 52, 75, 62],
+          data: this.pageData.lineData.Current,
         }, {
           label: 'Previous Week',
           fill: !0,
           backgroundColor: 'transparent',
           borderColor: '#0acf97',
-          data: [42, 58, 66, 93, 82, 105, 92],
+          data: this.pageData.lineData.Previous,
         }],
       },
       options: {
@@ -196,7 +198,7 @@ export default class Dashboard extends Vue {
       data: {
         labels: ['Direct', 'Affilliate', 'Sponsored', 'E-mail'],
         datasets: [{
-          data: [300, 135, 48, 154],
+          data: this.pageData.doughnut,
           backgroundColor: ['#727cf5', '#fa5c7c', '#0acf97', '#ebeff2'],
           borderColor: 'transparent',
           borderWidth: '3',
@@ -226,72 +228,44 @@ export default class Dashboard extends Vue {
 
   }
 
+  iconList = ['team', 'shopping-cart', 'pay-circle', 'line-chart']
+  loading: boolean = true;
+
   render() {
     return (
       <div class="container">
         <a-row gutter={{ xs: 8, md: 12, xl: 20 }} class="dash-col">
           <a-col span={10}>
             <a-row gutter={{ xs: 8, md: 12, xl: 20 }}>
-              <a-col {...{ props: this.ColLayout }} class="sub-item">
-                <a-card class="dash-card">
-                  <h3>Customers</h3>
-                  <a-icon class="icon" type="team"></a-icon>
-                  <p class="number">36,254</p>
-                  <div class="footer">
-                    <span class="s-number green">
-                      <a-icon type="arrow-up"></a-icon>
-                      5.27%
-                    </span>
-                    <span class="txt">Since last month</span>
-                  </div>
-                </a-card>
-              </a-col>
-              <a-col {...{ props: this.ColLayout }} class="sub-item">
-                <a-card class="dash-card">
-                  <h3>Orders</h3>
-                  <a-icon class="icon" type="shopping-cart"></a-icon>
-                  <p class="number">5,543</p>
-                  <div class="footer">
-                    <span class="s-number red">
-                      <a-icon type="arrow-down"></a-icon>
-                      1.08%
-                    </span>
-                    <span class="txt">Since last month</span>
-                  </div>
-                </a-card>
-              </a-col>
-              <a-col {...{ props: this.ColLayout }} class="sub-item">
-                <a-card class="dash-card">
-                  <h3>Revenue</h3>
-                  <a-icon class="icon" type="pay-circle"></a-icon>
-                  <p class="number">$6,254</p>
-                  <div class="footer">
-                    <span class="s-number red">
-                      <a-icon type="arrow-down"></a-icon>
-                      7.00%
-                    </span>
-                    <span class="txt">Since last month</span>
-                  </div>
-                </a-card>
-              </a-col>
-              <a-col {...{ props: this.ColLayout }} class="sub-item">
-                <a-card class="dash-card">
-                  <h3>Growth</h3>
-                  <a-icon class="icon" type="line-chart"></a-icon>
-                  <p class="number">+30.56%</p>
-                  <div class="footer">
-                    <span class="s-number green">
-                      <a-icon type="arrow-up"></a-icon>
-                      4.87%
-                    </span>
-                    <span class="txt">Since last month</span>
-                  </div>
-                </a-card>
-              </a-col>
+              {
+                this.pageData && this.pageData.dataList.map((item: any, index: number) =>
+                <a-col {...{ props: this.ColLayout }} class="sub-item">
+                  <a-card loading={this.loading} class="dash-card">
+                    <h3>{item.name}</h3>
+                    <a-icon class="icon" type={this.iconList[index]}></a-icon>
+                    <p class="number">{utils.numFormat(item.value)}</p>
+                    <div class="footer">
+                      <span class={`s-number ${index % 2 ? 'green' : 'red'}`}>
+                        <a-icon type={index % 2 ? 'arrow-up' : 'arrow-down'}></a-icon>
+                        {item.number}%
+                      </span>
+                      <span class="txt">Since last month</span>
+                    </div>
+                  </a-card>
+                </a-col>)
+              }
+              {
+                !this.pageData && this.iconList.map((item: any) =>
+                <a-col {...{ props: this.ColLayout }} class="sub-item">
+                  <a-card loading={this.loading} class="dash-card" style="height: 160px">
+                    ............
+                  </a-card>
+                </a-col>)
+              }
             </a-row>
           </a-col>
           <a-col span={14}>
-            <a-card class="dash-box dash-bar-chart">
+            <a-card loading={this.loading} class="dash-box dash-bar-chart">
               <a-icon class="opreat" type="ellipsis"></a-icon>
               <h2 class="title">PROJECTIONS VS ACTUALS</h2>
               <div style="height: 263px;" class="chartjs-chart">
@@ -302,17 +276,17 @@ export default class Dashboard extends Vue {
         </a-row>
         <a-row gutter={{ xs: 8, md: 12, xl: 20 }}>
           <a-col span={16}>
-            <a-card class="dash-box revenue-chart">
+            <a-card loading={this.loading} class="dash-box revenue-chart">
               <h2 class="title">REVENUE</h2>
               <a-icon class="opreat" type="ellipsis"></a-icon>
               <div class="week-data">
                 <div class="item">
                   <h4 class="item-title">Current Week</h4>
-                  <p class="number">$58,254</p>
+                  <p class="number">${this.pageData && utils.numFormat(this.pageData.CurrentWeek)}</p>
                 </div>
                 <div class="item">
                   <h4 class="item-title">Previous Week</h4>
-                  <p class="number number2">$69,524</p>
+                  <p class="number number2">${this.pageData && utils.numFormat(this.pageData.PreviousWeek)}</p>
                 </div>
               </div>
               <div class="float-text">
@@ -328,7 +302,7 @@ export default class Dashboard extends Vue {
             </a-card>
           </a-col>
           <a-col span={8}>
-            <a-card class="dash-box total-wrap">
+            <a-card loading={this.loading} class="dash-box total-wrap">
               <h2 class="title">Total Sales</h2>
               <a-icon class="opreat" type="ellipsis"></a-icon>
               <div class="filter-wrap">

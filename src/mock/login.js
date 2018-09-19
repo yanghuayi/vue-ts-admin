@@ -26,6 +26,7 @@ const adminUsers = [
     permissions: userPermission.DEVELOPER,
   },
 ];
+const noAuthList = ['/api/user/login'];
 module.exports = {
   loginByName(req, res) {
     const { username, password } = req.body;
@@ -42,11 +43,14 @@ module.exports = {
       res.json(baseData('error', '用户名密码错误'));
     }
   },
-  getUserInfo(req, res) {
+  authLogin(req, res, next) {
+    if (noAuthList.indexOf(req.path) > -1) {
+      next();
+      return;
+    }
     const cookie = req.headers.cookie || '';
     const cookies = qs.parse(cookie.replace(/\s/g, ''), { delimiter: ';' });
     const response = {};
-    const user = {};
     if (!cookies.token) {
       res.status(200).send(baseData('error', '登录超时', 3));
       return;
@@ -56,16 +60,24 @@ module.exports = {
       response.success = token.deadline > new Date().getTime();
     }
     if (response.success) {
-      const userItem = adminUsers.filter(_ => _.id === token.id);
-      if (userItem.length > 0) {
-        user.permissions = userItem[0].permissions;
-        user.username = userItem[0].username;
-        user.id = userItem[0].id;
-      }
+      next();
+    } else {
+      res.status(200).send(baseData('error', '登录超时', 3));
     }
-    response.user = user;
+  },
+  getUserInfo(req, res) {
+    const cookie = req.headers.cookie || '';
+    const cookies = qs.parse(cookie.replace(/\s/g, ''), { delimiter: ';' });
+    const token = JSON.parse(cookies.token);
+    const user = {};
+    const userItem = adminUsers.filter(_ => _.id === token.id);
+    if (userItem.length > 0) {
+      user.permissions = userItem[0].permissions;
+      user.username = userItem[0].username;
+      user.id = userItem[0].id;
+    }
     const data = baseData('success', '操作成功');
-    data.entity = response;
+    data.entity = user;
     res.json(data);
   },
 };
