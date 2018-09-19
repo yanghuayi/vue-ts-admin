@@ -80,7 +80,7 @@ export declare class AColumn {
 
   key?: string
 
-  customRender?: (text: string, record: object, index: number) => any | VNode
+  customRender?: (text: any, record: object, index: number) => any | VNode
 
   align?: 'left' | 'right' | 'center'
 

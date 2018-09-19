@@ -11,8 +11,10 @@ import Api from '@/api/api';
 
 import './styles/global.less';
 
+const Apis = new Api({ baseUrl: process.env.NODE_ENV === 'production' ? '' : '/api' });
 // 全局api
-window.api = new Api({ baseUrl: process.env.NODE_ENV === 'production' ? '' : '/api' }).api;
+window.api = Apis.api;
+window.Fetch = Apis;
 
 const options = {
   position: 'fixed',

@@ -1,5 +1,6 @@
 interface Window {
   api: any,
+  Fetch: any,
 }
 
 interface Date {

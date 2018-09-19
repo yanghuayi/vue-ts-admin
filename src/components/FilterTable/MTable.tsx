@@ -1,7 +1,6 @@
 import { Component, Prop, Emit, Vue, Inject, Provide } from 'vue-property-decorator';
 import { Popconfirm, Table, Dropdown, Menu, Button, Icon } from 'ant-design-vue';
 import { tableList, Opreat, Directives } from '@/interface';
-import request from '@/utils/request';
 import Spin from '@/components/Spin';
 import './MTable.less';
 
@@ -89,7 +88,7 @@ export default class MTable extends Vue {
 
   getData() {
     this.loading = true;
-    request({
+    window.Fetch.request({
       url: this.url,
       method: this.fetchType,
       fetchType: this.dataType,
@@ -98,7 +97,7 @@ export default class MTable extends Vue {
         this.pageParams,
         this.outParams,
       ),
-    }).then((res) => {
+    }).then((res: any) => {
       this.loading = false;
       const code = this.getValue(this.BackParams.code, res);
       if (code === this.BackParams.codeOK) {

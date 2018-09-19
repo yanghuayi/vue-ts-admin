@@ -10,6 +10,7 @@ module.exports = {
   ],
   rules: {
     'new-cap': 'off',
+    'no-continue': 'off',
     'experimentalDecorators': 'off',
     'consistent-return': 'off',
     'no-plusplus': 'off',

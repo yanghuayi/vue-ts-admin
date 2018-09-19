@@ -9,7 +9,7 @@
       </div>
       <div class="bullshit">
         <div class="bullshit__oops">OOPS!</div>
-        <div class="bullshit__info">版权所有<a class='link-type' href='http://www.chinapke.com/' target='_blank'>重庆桴之科科技有限公司</a></div>
+        <div class="bullshit__info">版权所有<a class='link-type' href='http://www.chinapke.com/' target='_blank'>@xioayang</a></div>
         <div class="bullshit__headline">{{ message }}</div>
         <div class="bullshit__info">请检查您输入的网址是否正确，请点击以下按钮返回主页或者发送错误报告</div>
         <a href="/" class="bullshit__return-home">返回首页</a>
@@ -33,6 +33,8 @@ export default class UpdatePwd extends Vue {
 </script>
 
 <style lang="less" scoped>
+@import '../../styles/var.less';
+
 .wscn-http404 {
   position: relative;
   width: 1200px;
@@ -161,7 +163,7 @@ export default class UpdatePwd extends Vue {
       font-size: 32px;
       font-weight: bold;
       line-height: 40px;
-      color: #1482f0;
+      color: @primary;
       opacity: 0;
       margin-bottom: 20px;
       animation-name: slideUp;
@@ -171,7 +173,7 @@ export default class UpdatePwd extends Vue {
     &__headline {
       font-size: 20px;
       line-height: 24px;
-      color: #1482f0;
+      color: @primary;
       opacity: 0;
       margin-bottom: 10px;
       animation-name: slideUp;
@@ -195,7 +197,7 @@ export default class UpdatePwd extends Vue {
       float: left;
       width: 110px;
       height: 36px;
-      background: #1482f0;
+      background: @primary;
       border-radius: 100px;
       text-align: center;
       color: #ffffff;

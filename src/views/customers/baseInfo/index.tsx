@@ -1,6 +1,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { Tag } from 'ant-design-vue';
-import { tableList } from '@/interface';
+import { tableList, FilterFormList, Opreat } from '@/interface';
+import city from '@/utils/city';
 
 import './index.less';
 
@@ -10,6 +11,41 @@ import './index.less';
   }
   })
 export default class BaseInfo extends Vue {
+  filterParams: any = {
+    name: '',
+    addressArr: [],
+    createtime: [],
+  }
+  BackParams: any = {
+    code: 'result.resultCode',
+    codeOK: '0',
+    message: 'result.resultMessage',
+    data: 'entity.data',
+    total: 'entity.total',
+  }
+  outParams: any = {}
+  filterList: FilterFormList[] = [
+    {
+      key: 'name',
+      label: 'name',
+      type: 'input',
+      placeholder: 'Seach Name',
+    },
+    {
+      key: 'address',
+      label: 'address',
+      type: 'cascader',
+      placeholder: 'Seach address',
+      options: city,
+    },
+    {
+      key: 'createtime',
+      label: 'Createtime',
+      type: 'datetimerange',
+      placeholder: ['start date', 'end date'],
+      options: city,
+    },
+  ]
   tableList: tableList[] = [
     {
       title: 'Name',
@@ -20,12 +56,12 @@ export default class BaseInfo extends Vue {
       dataIndex: 'nickname',
     },
     {
-      title: 'Login name',
-      dataIndex: 'loginName',
+      title: 'age',
+      dataIndex: 'age',
     },
     {
       title: 'Phone number',
-      dataIndex: 'phoneNumber',
+      dataIndex: 'phone',
     },
     {
       title: 'Birth date',
@@ -33,14 +69,14 @@ export default class BaseInfo extends Vue {
     },
     {
       title: 'Gender',
-      dataIndex: 'gender',
-      customRender(text: string) {
-        return <el-tag color={text === '男' ? 'blue': 'purple'}>{text}</el-tag>;
+      dataIndex: 'isMale',
+      customRender(text: any) {
+        return <el-tag color={text ? 'blue': 'purple'}>{text ? '男' : '女'}</el-tag>;
       },
     },
     {
       title: 'ID number',
-      dataIndex: 'idNumber',
+      dataIndex: 'id',
     },
     {
       title: 'Email',
@@ -51,11 +87,31 @@ export default class BaseInfo extends Vue {
       dataIndex: 'address',
     },
   ]
+  opreat: Opreat[] = [
+    {
+      key: 'edit',
+      rowKey: 'edit',
+      color: 'blue',
+      text: '编辑',
+      roles: true,
+    },
+  ]
   render() {
     return (
       <div class="baseInfo-wrap">
         <filter-table
           tableList={this.tableList}
+          filterList={this.filterList}
+          url={'/customers/baseInfoList'}
+          filterParams={this.filterParams}
+          outParams={this.outParams}
+          addBtn={true}
+          exportBtn={false}
+          dataType={'json'}
+          rowKey={'id'}
+          opreat={this.opreat}
+          fetchType={'post'}
+          BackParams={this.BackParams}
         >
         </filter-table>
       </div>

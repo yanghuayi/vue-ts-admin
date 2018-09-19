@@ -2,7 +2,6 @@ import { Component, Vue, Emit } from 'vue-property-decorator';
 import { Button, DatePicker, Modal, Row, Col, Card, Icon, Radio } from 'ant-design-vue';
 import Chart from 'chart.js';
 import utils from '@/utils/index';
-import { tableList } from '@/interface';
 
 import './index.less';
 
@@ -20,39 +19,6 @@ import './index.less';
   }
   })
 export default class Dashboard extends Vue {
-  // tableList: tableList[] = [
-  //   {
-  //     title: 'Product name',
-  //     dataIndex: 'name',
-  //     customRender(text: string, record: any, index: number) {
-  //       return (<div class="table-item">
-  //         <p class="name">{text}</p>
-  //         <p class="sub">{record.time}</p>
-  //       </div>);
-  //     },
-  //   },
-  //   {
-  //     title: 'Price',
-  //     dataIndex: 'price',
-  //     customRender(text: string, record: any) {
-  //       return `$${text}`;
-  //     },
-  //   },
-  //   {
-  //     title: 'Quantity',
-  //     dataIndex: 'quantity',
-  //     customRender(text: string) {
-  //       return `${text} unit`;
-  //     },
-  //   },
-  //   {
-  //     title: 'Amount',
-  //     dataIndex: 'amount',
-  //     customRender(text: string) {
-  //       return `$${text}`;
-  //     },
-  //   },
-  // ]
   pageData: any = null;
   created() {
     window.api.dashboard(null).then((res: returnData) => {

@@ -46,6 +46,23 @@ export const asyncRouterMap: routerItem[] = [
     permission: true,
     meta: { key: 'Dashboard' },
   },
+  {
+    path: '/customers',
+    icon: 'team',
+    name: 'Customers',
+    component: getComponent('customers/index'),
+    permission: true,
+    meta: { key: 'Customers' },
+    children: [
+      {
+        path: 'baseInfo',
+        name: 'Base info',
+        component: getComponent('customers/baseInfo/index'),
+        permission: true,
+        meta: { key: 'BaseInfo' },
+      },
+    ],
+  },
 ];
 
 Vue.use(Router);

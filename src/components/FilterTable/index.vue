@@ -101,6 +101,7 @@ export default class FilterTable extends Vue {
   constructor(props: any) {
     super(props);
     const self = this;
+    console.log(self.tableList);
     const saveList = window.localStorage.getItem(this.localName);
     if (saveList) {
       const checkList = saveList.split(',');
