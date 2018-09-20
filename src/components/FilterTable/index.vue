@@ -53,9 +53,9 @@ import MTable from './MTable';
   })
 export default class FilterTable extends Vue {
   // 筛选表单生成参数
-  @Prop() private filterList!: FilterFormList[];
+  @Prop({ default: [] }) private filterList!: FilterFormList[];
   // 筛选表单高级生成参数
-  @Prop() private filterGrade!: FilterFormList[];
+  @Prop({ default: [] }) private filterGrade!: FilterFormList[];
   // 筛选表单存储数据参数
   @Prop({ default: {} })
   private filterParams!: any;
@@ -63,32 +63,32 @@ export default class FilterTable extends Vue {
   @Prop({ default: {} })
   private outParams!: any;
   // 是否展示新增按钮
-  @Prop() private addBtn!: boolean;
+  @Prop({ default: false }) private addBtn!: boolean;
   // 是否展示导出按钮
-  @Prop() private exportBtn!: boolean;
+  @Prop({ default: false }) private exportBtn!: boolean;
   // 表格参数
-  @Prop() private tableList!: tableList[];
+  @Prop({ default: [] }) private tableList!: tableList[];
   // 请求数据地址
-  @Prop() private url!: string;
+  @Prop({ default: '' }) private url!: string;
   // 请求数据类型
   @Prop({ default: 'formData' })
   private dataType!: string;
   // 表格行ID
-  @Prop() private rowKey!: string;
+  @Prop({ default: 'id' }) private rowKey!: string;
   // 操作参数
-  @Prop() private opreat!: Opreat[];
+  @Prop({ default: [] }) private opreat!: Opreat[];
   // 操作栏width
-  @Prop() private opreatWidth!: string;
+  @Prop({ default: '100px' }) private opreatWidth!: string;
   // 本地存储字段名
   @Prop({ default: 'filterTable' }) private localName!: string;
   // 请求错误回调事件
   @Prop() private fetchError!: string;
   // 默认分页数量
-  @Prop() private defaultPageSize!: number;
+  @Prop({ default: 10 }) private defaultPageSize!: number;
   // 数据返回格式
   @Prop() private BackParams!: object;
   // 请求数据方法
-  @Prop() private fetchType!: string;
+  @Prop({ default: 'json' }) private fetchType!: string;
 
   @Prop({ default: false }) private highlightCurrentRow!: boolean;
   // 初始化请求参数
@@ -101,7 +101,6 @@ export default class FilterTable extends Vue {
   constructor(props: any) {
     super(props);
     const self = this;
-    console.log(self.tableList);
     const saveList = window.localStorage.getItem(this.localName);
     if (saveList) {
       const checkList = saveList.split(',');

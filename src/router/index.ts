@@ -23,12 +23,6 @@ export const constantRouterMap: routerItem[] & RouterOptions['routes'] = [
   {
     path: '/401', name: '401', component: getComponent('error/401.vue'),
   },
-  {
-    path: '/dashboard',
-    name: 'dashboard',
-    component: getComponent('dashboard/index'),
-    meta: { key: 'Dashboard' },
-  },
 ];
 /**
  * permission 有3种类型： Boolean Array String
@@ -56,7 +50,7 @@ export const asyncRouterMap: routerItem[] = [
     children: [
       {
         path: 'baseInfo',
-        name: 'Base info',
+        name: 'Base Info',
         component: getComponent('customers/baseInfo/index'),
         permission: true,
         meta: { key: 'BaseInfo' },

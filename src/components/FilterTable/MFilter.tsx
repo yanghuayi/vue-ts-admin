@@ -13,6 +13,7 @@ import './MFilter.less';
   'a-form-item': Form.Item,
   'a-time-picker': TimePicker,
   'a-date-picker': DatePicker,
+  'a-range-picker': DatePicker.RangePicker,
   'a-cascader': Cascader,
   'a-row': Row,
   'a-col': Col,
@@ -31,10 +32,10 @@ import './MFilter.less';
 
 class MFilterClass extends Vue {
   // 筛选表单生成参数
-  @Prop()
+  @Prop({ default: [] })
   private filterList!: FilterFormList[];
   // 筛选表单高级生成参数
-  @Prop()
+  @Prop({ default: [] })
   private filterGrade!: FilterFormList[];
   // 筛选表单存储数据参数
   @Prop({ default: {} }) private filterParams!: any;
@@ -45,10 +46,10 @@ class MFilterClass extends Vue {
   // 导出按钮回调事件
   @Prop({ default: () => { } }) private exportFun!: Function;
   // tablelist 参数
-  @Prop() private tableList!: tableList[];
+  @Prop({ default: [] }) private tableList!: tableList[];
   @Prop({ default: '100px' }) private labelWidth!: string;
 
-  @Prop() private localName!: string;
+  @Prop({ default: 'filterTable' }) private localName!: string;
   // data
   params: any = JSON.parse(JSON.stringify(this.filterParams));
   // 初始化表格筛选参数
@@ -175,6 +176,7 @@ class MFilterClass extends Vue {
         break;
       case 'datetimerange':
         itemDom = <a-range-picker
+          style="width: 100%"
           id={item.key}
           showTime
           format="YYYY-MM-DD HH:mm:ss"
@@ -211,7 +213,7 @@ class MFilterClass extends Vue {
       );
     }
     return (
-      <a-col span={4} xl={3} lg={3} md={4} sm={8} xs={12} key={index}>
+      <a-col {...{ props: this.nomalLayout }} key={index}>
         <a-form-item>
           {
             getFieldDecorator(item.key)(itemDom)
@@ -219,6 +221,15 @@ class MFilterClass extends Vue {
         </a-form-item>
       </a-col>
     );
+  }
+
+  nomalLayout = {
+    span: 4,
+    xl: 3,
+    lg: 3,
+    md: 4,
+    sm: 8,
+    xs: 12,
   }
 
   gradeLayout = {
@@ -248,9 +259,9 @@ class MFilterClass extends Vue {
   }
 
   // 时间区间赋值操作
-  rangeChange(data: Date[], value: string[]) {
-    this.params[value[0]] = data[0].Format('yyyy-MM-dd hh:mm:ss');
-    this.params[value[1]] = data[1].Format('yyyy-MM-dd hh:mm:ss');
+  rangeChange(data: any, value: string[]) {
+    this.params[value[0]] = data[0].format('YYYY-MM-DD hh:mm:ss');
+    this.params[value[1]] = data[1].format('YYYY-MM-DD hh:mm:ss');
   }
 
   render() {
@@ -286,7 +297,7 @@ class MFilterClass extends Vue {
               </a-form>
             </div> : null
         }
-        <a-modal id="tableSet" width="500px" title="表格设置" visible={this.setModel} on-ok={this.setTable} on-cancel={this.closeModal}>
+        <a-modal id="tableSet" width="500px" title="Table Setting" visible={this.setModel} on-ok={this.setTable} on-cancel={this.closeModal}>
           <a-checkbox-group class="checkbox-list" v-model={this.checkList}>
             {
               this.tableList.map((item, index) => <a-checkbox key={index} value={item.dataIndex}>
@@ -304,21 +315,21 @@ class MFilterClass extends Vue {
       this.$emit('setTable', this.checkList);
       this.setModel = false;
     } else {
-      this.$message.error('表格不能为空，请重新选择');
+      this.$message.error('At least one column！');
     }
   }
 
   btnElement(isNormal: boolean): JSX.Element {
     return (
       <div>
-        <a-button type="primary" on-click={this.onSearch} id="tableSearch" icon="search">搜索</a-button>
-        <a-button type="primary" on-click={this.reset} id="tableReset" icon="reload">重置</a-button>
+        <a-button type="primary" on-click={this.onSearch} id="tableSearch" icon="search">Search</a-button>
+        <a-button type="primary" on-click={this.reset} id="tableReset" icon="reload">Reset</a-button>
         {
-          this.filterGrade.length ? <a on-click={() => this.gradeSwitch(isNormal)} class="grade-btn">{isNormal ? '普通' : '高级'}搜索{isNormal ? <i class="iconfont-down"></i> : <i class="iconfont-up"></i>}</a> : null
+          this.filterGrade.length ? <a on-click={() => this.gradeSwitch(isNormal)} class="grade-btn">{isNormal ? 'Common' : 'Senior'} Search{isNormal ? <i class="iconfont-down"></i> : <i class="iconfont-up"></i>}</a> : null
         }
         <div class="right-btn">
           {
-            this.addBtn ? <a-button on-click={this.addFun} id={isNormal ? 'tableAdd' : 'tableAdd2'} icon="plus">新增</a-button> : null
+            this.addBtn ? <a-button on-click={this.addFun} id={isNormal ? 'tableAdd' : 'tableAdd2'} icon="plus">Add</a-button> : null
           }
           {
             this.exportBtn ? <a-button on-click={this.addFun} id={isNormal ? 'tableExport' : 'tableExport2'} icon="download" shape="circle"></a-button> : null

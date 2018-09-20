@@ -4049,7 +4049,7 @@ const tree = (list: any) => {
   return result;
 };
 
-const DICT_FIXED = (function () {
+const DICT_FIXED = (function dict() {
   const fixed = [];
   for (const id in DICT) {
     if ({}.hasOwnProperty.call(DICT, id)) {

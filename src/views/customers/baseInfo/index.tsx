@@ -13,15 +13,17 @@ import './index.less';
 export default class BaseInfo extends Vue {
   filterParams: any = {
     name: '',
-    addressArr: [],
+    address: [],
     createtime: [],
+    startTime: '',
+    endTime: '',
   }
   BackParams: any = {
-    code: 'result.resultCode',
-    codeOK: '0',
-    message: 'result.resultMessage',
-    data: 'entity.data',
-    total: 'entity.total',
+    code: 'data.result.resultCode',
+    codeOK: 0,
+    message: 'data.result.resultMessage',
+    data: 'data.entity.data',
+    total: 'data.entity.total',
   }
   outParams: any = {}
   filterList: FilterFormList[] = [
@@ -43,7 +45,7 @@ export default class BaseInfo extends Vue {
       label: 'Createtime',
       type: 'datetimerange',
       placeholder: ['start date', 'end date'],
-      options: city,
+      value: ['startTime', 'endTime'],
     },
   ]
   tableList: tableList[] = [
@@ -53,7 +55,7 @@ export default class BaseInfo extends Vue {
     },
     {
       title: 'Nickname',
-      dataIndex: 'nickname',
+      dataIndex: 'nickName',
     },
     {
       title: 'age',
@@ -70,9 +72,7 @@ export default class BaseInfo extends Vue {
     {
       title: 'Gender',
       dataIndex: 'isMale',
-      customRender(text: any) {
-        return <el-tag color={text ? 'blue': 'purple'}>{text ? '男' : '女'}</el-tag>;
-      },
+      customRender: this.genderRender,
     },
     {
       title: 'ID number',
@@ -90,18 +90,36 @@ export default class BaseInfo extends Vue {
   opreat: Opreat[] = [
     {
       key: 'edit',
-      rowKey: 'edit',
+      rowKey: 'id',
       color: 'blue',
       text: '编辑',
       roles: true,
     },
+    {
+      key: 'delete',
+      rowKey: 'id',
+      color: 'red',
+      text: '删除',
+      roles: true,
+      msg: '确定删除？',
+    },
   ]
+
+  genderRender(text: any) {
+    return <a-tag color={text ? 'blue': 'purple'}>{text ? 'Male' : 'Female'}</a-tag>;
+  }
+
+  tableClick(key: string, row: any) {
+    console.log(key, row);
+  }
+
   render() {
     return (
       <div class="baseInfo-wrap">
         <filter-table
           tableList={this.tableList}
           filterList={this.filterList}
+          filterGrade={[]}
           url={'/customers/baseInfoList'}
           filterParams={this.filterParams}
           outParams={this.outParams}
@@ -112,6 +130,7 @@ export default class BaseInfo extends Vue {
           opreat={this.opreat}
           fetchType={'post'}
           BackParams={this.BackParams}
+          on-menuClick={this.tableClick}
         >
         </filter-table>
       </div>

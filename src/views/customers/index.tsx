@@ -3,9 +3,12 @@ import { Component, Vue } from 'vue-property-decorator';
 @Component
 export default class Customers extends Vue {
   render() {
+    const { keepList } = this.$store.state.app;
     return (
       <div>
-        <router-view></router-view>
+        <keep-alive max={10} include={keepList}>
+          <router-view/>
+        </keep-alive>
       </div>
     );
   }

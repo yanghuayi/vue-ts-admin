@@ -24,13 +24,13 @@ export default class AppMain extends Vue {
   }
 
   @Emit()
-  removeTab(path: string) {
-    this.$store.dispatch('RemoveTab', path);
+  removeTab(name: string) {
+    this.$store.dispatch('RemoveTab', name);
   }
   @Emit()
-  tabChange(path: any) {
+  tabChange(name: any) {
     this.tabList.forEach((item: any, indexs: number) => {
-      if (item.path === path) {
+      if (item.name === name) {
         this.$router.push({ name: item.name, params: { id: item.params }, query: item.query });
         this.$store.dispatch('TabChange', item.name);
       }
@@ -65,10 +65,10 @@ export default class AppMain extends Vue {
         }
         <div class="page-content">
           <Header />
-          <a-tabs class="page-tabs" v-model={this.onTabs} type="editable-card" on-change={this.tabChange} on-edit={this.onTabEdit}>
+          <a-tabs class="page-tabs" activeKey={this.onTabs} type="editable-card" on-change={this.tabChange} on-edit={this.onTabEdit}>
             {
               tabList.map((item: any, index: number) => <a-tab-pane
-              closable={tabList.length > 1} key={item.path}
+              closable={tabList.length > 1} key={item.name}
               tab={item.name}>
               </a-tab-pane>)
             }

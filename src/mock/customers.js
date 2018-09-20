@@ -23,9 +23,9 @@ const database = BaseInfoData.list;
 
 module.exports = {
   baseInfoList(req, res) {
-    let { pageSize, page, ...other } = req.body;
+    let { pageSize, pageNum, ...other } = req.body;
     pageSize = pageSize || 10;
-    page = page || 1;
+    pageNum = pageNum || 1;
     other = { ...other };
 
     let newData = database;
@@ -35,9 +35,9 @@ module.exports = {
           if ({}.hasOwnProperty.call(item, key)) {
             if (key === 'address') {
               return other[key].every(iitem => item[key].indexOf(iitem) > -1);
-            } else if (key === 'createTime') {
-              const start = new Date(other[key][0]).getTime();
-              const end = new Date(other[key][1]).getTime();
+            } else if (key === 'startTime' || key === 'endTime') {
+              const start = new Date(other.startTime).getTime();
+              const end = new Date(other.endTime).getTime();
               const now = new Date(item[key]).getTime();
 
               if (start && end) {
@@ -52,7 +52,7 @@ module.exports = {
       }
     }
     const list = {
-      data: newData.slice((page - 1) * pageSize, page * pageSize),
+      data: newData.slice((pageNum - 1) * pageSize, pageNum * pageSize),
       total: newData.length,
     };
     const data = baseData('success', '查询成功');

@@ -83,6 +83,7 @@ export default class MTable extends Vue {
   }
 
   reload() {
+    this.pageParams.pageNum = 1;
     this.getData();
   }
 
@@ -112,7 +113,7 @@ export default class MTable extends Vue {
   getValue(position: string, data: any) {
     const keyList = position.split('.');
     keyList.forEach((item) => {
-      if (data && data[item]) {
+      if (data !== null && data[item] !== null) {
         data = data[item];
       } else {
         data = null;
@@ -191,8 +192,7 @@ export default class MTable extends Vue {
           return <a id={`${item.key}-${record[item.rowKey]}`} key={indexs} class="btn disabled">
             { typeof item.text === 'function' ? item.text(record) : item.text }
           </a>;
-        } else if (typeof item.color === 'function'
-        && whiteList.indexOf(typeof item.color === 'function' ? item.color(record) : item.color) >= 0) {
+        } else if (whiteList.indexOf(typeof item.color === 'function' ? item.color(record) : item.color) >= 0) {
           return <a-popconfirm
             on-confirm={() => this.menuClick(item.key, record)}
             title={typeof item.msg === 'function' ? item.msg(record) : item.msg}>

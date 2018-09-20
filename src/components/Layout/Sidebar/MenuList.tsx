@@ -1,6 +1,7 @@
-import { Component, Emit, Vue, Prop } from 'vue-property-decorator';
+import { Component, Emit, Vue, Prop, Watch } from 'vue-property-decorator';
 import { Menu } from 'ant-design-vue';
 import { routerItem } from '@/interface';
+import utils from '@/utils/index';
 import './MenuList.less';
 
 @Component({
@@ -14,16 +15,22 @@ import './MenuList.less';
 export default class MenuList extends Vue {
   @Prop({ default: '#010101' }) private bgColor!: string;
   @Prop({ default: '#fff' }) private txtColor!: string;
-  @Emit()
-  handleOpen(key: string, keyPath: string) {
-    const self = this;
-    console.log(key, keyPath);
+
+  keys: string[] = []
+  openKeys: string[] = []
+
+  @Watch('$route', { immediate: true, deep: true })
+  routeChange(to: any, from: any) {
+    this.keys = utils.routeToArray(to.path).routeArr;
+    const open = this.keys.concat();
+    open.pop();
+    this.openKeys = open || [];
   }
-  @Emit()
-  handleClose(key: string, keyPath: string) {
-    const self = this;
-    console.log(key, keyPath);
+
+  openChange(openKeys: string[]) {
+    this.openKeys = openKeys;
   }
+
   render() {
     const { menuData, sidebar: { opened } } = this.$store.state.app;
     return (
@@ -32,6 +39,9 @@ export default class MenuList extends Vue {
         theme='dark'
         mode="inline"
         class="left-menu"
+        openKeys={this.openKeys}
+        on-openChange={this.openChange}
+        selectedKeys={this.keys}
         on-click={(params: {item: any, key: string, keyPath: string[]}) => {
           this.openPage(`${params.keyPath.length > 1 ? `${params.keyPath[1]}/${params.keyPath[0]}` : params.keyPath[0]}`);
         }}
