@@ -136,7 +136,7 @@ export default class FilterTable extends Vue {
   }
   @Emit()
   addBack() {
-    this.$emit('addBack');
+    this.$emit('add');
   }
   @Emit()
   tableHeight(params: any) {

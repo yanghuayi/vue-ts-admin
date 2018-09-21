@@ -3,11 +3,14 @@ import { Tag } from 'ant-design-vue';
 import { tableList, FilterFormList, Opreat } from '@/interface';
 import city from '@/utils/city';
 
+import InfoModal from './infoModal';
+
 import './index.less';
 
 @Component({
   components: {
   'a-tag': Tag,
+  'info-modal': InfoModal,
   }
   })
 export default class BaseInfo extends Vue {
@@ -105,12 +108,24 @@ export default class BaseInfo extends Vue {
     },
   ]
 
+  title: string = 'add customer'
+  visible: boolean = false
+
   genderRender(text: any) {
     return <a-tag color={text ? 'blue': 'purple'}>{text ? 'Male' : 'Female'}</a-tag>;
   }
 
   tableClick(key: string, row: any) {
     console.log(key, row);
+  }
+
+  add() {
+    this.title = 'Add customer';
+    this.visible = true;
+  }
+
+  closeModal() {
+    this.visible = false;
   }
 
   render() {
@@ -131,8 +146,14 @@ export default class BaseInfo extends Vue {
           fetchType={'post'}
           BackParams={this.BackParams}
           on-menuClick={this.tableClick}
+          on-add={this.add}
         >
         </filter-table>
+        <info-modal
+          title={this.title}
+          visible={this.visible}
+          on-close={this.closeModal}>
+        </info-modal>
       </div>
     );
   }
