@@ -28,6 +28,39 @@ Vue.component('filter-table', FilterTable);
 
 Vue.config.productionTip = false;
 
+
+// Vue.mixin({
+//   beforeRouteLeave(to, from, next) {
+//     const vnode = (this as any).$vnode;
+//     if (from && from.meta.rank && to.meta.rank && from.meta.rank > to.meta.rank) {
+//       if (vnode && vnode.data.keepAlive) {
+//         if (vnode.parent && vnode.parent.componentInstance
+//            && vnode.parent.componentInstance.cache) {
+//           if (vnode.componentOptions) {
+//             const key = vnode.key == null
+//               ? vnode.componentOptions.Ctor.cid +
+// (vnode.componentOptions.tag ? `::${vnode.componentOptions.tag}` : '')
+//               : vnode.key;
+//             const cache = vnode.parent.componentInstance.cache;
+//             const keys = vnode.parent.componentInstance.keys;
+//             if (cache[key]) {
+//               if (keys.length) {
+//                 const index = keys.indexOf(key);
+//                 if (index > -1) {
+//                   keys.splice(index, 1);
+//                 }
+//               }
+//               delete cache[key];
+//             }
+//           }
+//         }
+//       }
+//       this.$destroy();
+//     }
+//     next();
+//   },
+// });
+
 let flag: boolean = true;
 // 路由拦截，权限验证和菜单生成
 router.beforeEach((to, from, next) => {

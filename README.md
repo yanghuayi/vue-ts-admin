@@ -34,6 +34,13 @@
 yarn install
 ```
 
+### 完成进度：
+
+![dashboard](/images/dashboard.png)
+![baseInfo](/images/baseInfo.png)
+
+
+
 ### Compiles and hot-reloads for development
 ```
 yarn run serve
