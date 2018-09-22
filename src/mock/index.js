@@ -12,4 +12,7 @@ module.exports = function mockInit(app) {
   app.post('/api/user/getUserInfo', login.getUserInfo);
   app.post('/api/dashboard', dashboard);
   app.post('/api/customers/baseInfoList', customers.baseInfoList);
+  app.post('/api/customers/baseInfo/add', customers.add);
+  app.post('/api/customers/baseInfo/update', customers.update);
+  app.post('/api/customers/baseInfo/delete', customers.delete);
 };

@@ -19,7 +19,7 @@ const BaseInfoData = Mock.mock({
   ],
 });
 
-const database = BaseInfoData.list;
+let database = BaseInfoData.list;
 
 module.exports = {
   baseInfoList(req, res) {
@@ -60,6 +60,39 @@ module.exports = {
     setTimeout(() => {
       res.status(200).json(data);
     }, 2000);
+  },
+  delete(req, res) {
+    const { ids } = req.body;
+    database = database.filter(item => !ids.some(_ => _ === item.id));
+    res.status(204).end();
+  },
+  update(req, res) {
+    const editItem = req.body;
+    let isExist = false;
+
+    database = database.map((item) => {
+      if (item.id === editItem.id) {
+        isExist = true;
+        return Object.assign({}, item, editItem);
+      }
+      return item;
+    });
+
+    if (isExist) {
+      res.status(201).end(baseData('success', '更新成功！'));
+    } else {
+      res.status(404).json(baseData('error', '未找到对应数据！'));
+    }
+  },
+  add(req, res) {
+    const newData = req.body;
+    newData.createTime = Mock.mock('@now');
+    newData.avatar = newData.avatar || Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', newData.nickName.substr(0, 1));
+    newData.id = Mock.mock('@id');
+
+    database.unshift(newData);
+
+    res.status(200).end(baseData('success', '新增成功！'));
   },
 };
 
