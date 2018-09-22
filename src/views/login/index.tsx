@@ -94,6 +94,7 @@ class Login extends Vue {
                   id="password"
                   prefix-icon="iconfont-lock"
                   type="password"
+                  on-pressEnter={this.submitForm}
                   placeholder="Please enter a user name"
               >
                 <a-icon slot="prefix" type='lock'/>

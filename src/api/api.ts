@@ -50,6 +50,21 @@ export default class Api {
       fetchType: 'json',
       method: 'post',
     },
+    baseInfoAdd: {
+      url: '/customers/baseInfo/add',
+      fetchType: 'json',
+      method: 'post',
+    },
+    baseInfoUpdate: {
+      url: '/customers/baseInfo/update',
+      fetchType: 'json',
+      method: 'post',
+    },
+    baseInfoDelete: {
+      url: '/customers/baseInfo/delete',
+      fetchType: 'json',
+      method: 'post',
+    },
   }
   // 对外暴露方法
   api: Apis = {}

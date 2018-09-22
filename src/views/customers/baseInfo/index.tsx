@@ -110,28 +110,45 @@ export default class BaseInfo extends Vue {
 
   title: string = 'add customer'
   visible: boolean = false
+  modelType: string = 'add'
+  editData: object = {}
 
   genderRender(text: any) {
     return <a-tag color={text ? 'blue': 'purple'}>{text ? 'Male' : 'Female'}</a-tag>;
   }
 
   tableClick(key: string, row: any) {
-    console.log(key, row);
+    switch(key) {
+      case 'edit':
+        this.editData = row;
+        this.visible = true;
+        this.modelType = 'edit';
+      break;
+    }
   }
 
   add() {
     this.title = 'Add customer';
+    this.modelType = 'add';
     this.visible = true;
+    this.editData = {};
   }
 
   closeModal() {
     this.visible = false;
   }
 
+  success() {
+    this.visible = false;
+    const Table: any = this.$refs.baseInfoTable;
+    Table.reloadTable();
+  }
+
   render() {
     return (
       <div class="baseInfo-wrap">
         <filter-table
+          ref="baseInfoTable"
           tableList={this.tableList}
           filterList={this.filterList}
           filterGrade={[]}
@@ -152,7 +169,11 @@ export default class BaseInfo extends Vue {
         <info-modal
           title={this.title}
           visible={this.visible}
-          on-close={this.closeModal}>
+          type={this.modelType}
+          data={this.editData}
+          on-close={this.closeModal}
+          on-success={this.success}
+          >
         </info-modal>
       </div>
     );

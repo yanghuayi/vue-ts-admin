@@ -22,7 +22,8 @@ import city from '@/utils/city';
 class InfoModal extends Vue {
   @Prop() title!: string;
   @Prop() visible!: boolean;
-
+  @Prop() type!: string;
+  @Prop() data!: any;
   formItemLayout = {
     labelCol: {
       xs: { span: 24 },
@@ -37,7 +38,29 @@ class InfoModal extends Vue {
   submit() {
     this.Form.validateFields((err: any, values: any) => {
       if (!err) {
-        console.log(values);
+        if (this.type === 'add') {
+          window.api.baseInfoAdd(values).then((res: any) => {
+            const { result: { resultCode, resultMessage } } = res.data;
+            if (!resultCode) {
+              this.$message.success(resultMessage);
+              this.Form.resetFields();
+              this.$emit('success');
+            } else {
+              this.$message.error(resultMessage);
+            }
+          });
+        } else {
+          window.api.baseInfoUpdate(values).then((res: any) => {
+            const { result: { resultCode, resultMessage } } = res.data;
+            if (!resultCode) {
+              this.$message.success(resultMessage);
+              this.Form.resetFields();
+              this.$emit('success');
+            } else {
+              this.$message.error(resultMessage);
+            }
+          });
+        }
       }
     });
   }
@@ -61,6 +84,7 @@ class InfoModal extends Vue {
           label="name"
           >
             {getFieldDecorator('name', {
+              initialValue: this.data.name,
               rules: [
                 { required: true, message: 'please enter the name' },
               ],
@@ -71,6 +95,7 @@ class InfoModal extends Vue {
           label="nickName"
           >
             {getFieldDecorator('nickName', {
+              initialValue: this.data.nickName,
               rules: [
                 { required: true, message: 'please enter the nickName' },
               ],
@@ -81,6 +106,7 @@ class InfoModal extends Vue {
           label="age"
           >
             {getFieldDecorator('age', {
+              initialValue: this.data.age,
               rules: [
                 { required: true, message: 'please enter the age' },
               ],
@@ -91,6 +117,7 @@ class InfoModal extends Vue {
           label="phone"
           >
             {getFieldDecorator('phone', {
+              initialValue: this.data.phone,
               rules: [
                 { required: true, message: 'please enter the phone' },
                 {
@@ -105,6 +132,7 @@ class InfoModal extends Vue {
           label="birthDate"
           >
             {getFieldDecorator('birthDate', {
+              initialValue: this.data.birthDate,
               rules: [
                 { required: true, message: 'please select the birthDate' },
               ],
@@ -119,6 +147,7 @@ class InfoModal extends Vue {
           label="isMale"
           >
             {getFieldDecorator('isMale', {
+              initialValue: this.data.isMale,
               rules: [
                 { required: true, message: 'please select the birthDate' },
               ],
@@ -132,6 +161,7 @@ class InfoModal extends Vue {
           label="id Number"
           >
             {getFieldDecorator('id', {
+              initialValue: this.data.id,
               rules: [
                 { required: true, message: 'please enter the id Number' },
               ],
@@ -142,6 +172,7 @@ class InfoModal extends Vue {
           label="email"
           >
             {getFieldDecorator('email', {
+              initialValue: this.data.email,
               rules: [
                 { required: true, message: 'please enter the id email' },
               ],
@@ -152,6 +183,7 @@ class InfoModal extends Vue {
           label="address"
           >
             {getFieldDecorator('address', {
+              initialValue: this.data.address,
               rules: [
                 { required: true, message: 'please select the address' },
               ],
@@ -172,5 +204,7 @@ export default Form.create({
   props: {
     title: String,
     visible: Boolean,
+    type: String,
+    data: Object,
   },
 })(InfoModal);
