@@ -47,6 +47,27 @@ function numFormat(num: number) {
   return num.toString().replace(/(\d{1,3})(?=(\d{3})+$)/g, '$1,');
 }
 
+export const loadApexCharts = () => new Promise(((resolve, reject) => {
+  if (window.apexCharts) {
+    resolve(window.apexCharts);
+  }
+  const script: any = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src = '/apexcharts.js';
+  script.onerror = reject;
+  document
+    .head
+    .appendChild(script);
+  script.onload = function onload() {
+    if (!this.readyState || this.readyState === 'loaded' || this.readyState === 'complete') {
+      resolve(window.apexCharts);
+    }
+    script.onload = null;
+    script.onreadystatechange = null;
+  };
+  script.onreadystatechange = script.onload;
+}));
+
 export default {
   param2Obj,
   levelcodeToArray,

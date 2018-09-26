@@ -1,7 +1,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component
-export default class Project extends Vue {
+export default class ApexCharts extends Vue {
   render() {
     const { keepList } = this.$store.state.app;
     return (

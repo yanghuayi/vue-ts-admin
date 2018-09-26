@@ -1,5 +1,5 @@
 import { Component, Emit, Vue, Prop, Watch } from 'vue-property-decorator';
-import { Menu } from 'ant-design-vue';
+import { Menu, Icon } from 'ant-design-vue';
 import { routerItem } from '@/interface';
 import utils from '@/utils/index';
 import './MenuList.less';
@@ -10,6 +10,7 @@ import './MenuList.less';
   'a-submenu': Menu.SubMenu,
   'a-menu-item-group': Menu.ItemGroup,
   'a-menu-item': Menu.Item,
+  'a-icon': Icon,
   }
   })
 export default class MenuList extends Vue {
@@ -43,7 +44,8 @@ export default class MenuList extends Vue {
         on-openChange={this.openChange}
         selectedKeys={this.keys}
         on-click={(params: {item: any, key: string, keyPath: string[]}) => {
-          this.openPage(`${params.keyPath.length > 1 ? `${params.keyPath[1]}/${params.keyPath[0]}` : params.keyPath[0]}`);
+          const keyPath = params.keyPath.reverse();
+          this.openPage(keyPath.join('/'));
         }}
       >
         {menuData ? this.renderMenu(menuData) : null}
@@ -63,7 +65,7 @@ export default class MenuList extends Vue {
           return <a-menu-item
             id={item.path}
             key={`${item.path}`}>
-            <i class={`iconfont-${item.icon}`}></i>
+            <a-icon type={item.icon}></a-icon>
             <span>{item.name}</span>
           </a-menu-item>;
         }
@@ -71,7 +73,7 @@ export default class MenuList extends Vue {
           id={item.path}
           key={item.path}>
           <template slot="title">
-            <i class={`iconfont-${item.icon}`}></i>
+          <a-icon type={item.icon}></a-icon>
             <span>{item.name}</span>
           </template>
           {this.renderMenu(item.children, parentPath ? `${parentPath}/${item.path}` : item.path)}
@@ -82,7 +84,7 @@ export default class MenuList extends Vue {
       return <a-menu-item
         id={item.path}
         key={`${item.path}`}>
-        <i class={`iconfont-${item.icon}`}></i>
+        <a-icon type={item.icon}></a-icon>
         <span>{item.name}</span>
       </a-menu-item>;
     });

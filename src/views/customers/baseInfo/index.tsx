@@ -1,11 +1,13 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { Tag } from 'ant-design-vue';
+import moment from 'moment';
 import { tableList, FilterFormList, Opreat } from '@/interface';
 import city from '@/utils/city';
 
 import InfoModal from './infoModal';
 
 import './index.less';
+
 
 @Component({
   components: {
@@ -118,12 +120,17 @@ export default class BaseInfo extends Vue {
   }
 
   tableClick(key: string, row: any) {
-    switch(key) {
+    const data = JSON.parse(JSON.stringify(row));
+    data.address = data.address.split(' ');
+    data.birthDate = moment(data.birthDate, 'YYYY-MM-DD HH:mm:ss');
+    switch (key) {
       case 'edit':
-        this.editData = row;
+        this.editData = data;
         this.visible = true;
         this.modelType = 'edit';
-      break;
+        break;
+      default:
+        break;
     }
   }
 
@@ -136,11 +143,13 @@ export default class BaseInfo extends Vue {
 
   closeModal() {
     this.visible = false;
+    this.editData = {};
   }
 
   success() {
     this.visible = false;
     const Table: any = this.$refs.baseInfoTable;
+    this.editData = {};
     Table.reloadTable();
   }
 

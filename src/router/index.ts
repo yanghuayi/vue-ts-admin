@@ -57,6 +57,32 @@ export const asyncRouterMap: routerItem[] = [
       },
     ],
   },
+  {
+    path: '/charts',
+    icon: 'line-chart',
+    name: 'Charts',
+    component: getComponent('chart/index'),
+    permission: true,
+    meta: { key: 'Charts' },
+    children: [
+      {
+        path: 'apexCharts',
+        name: 'ApexCharts',
+        component: getComponent('chart/apexCharts/index'),
+        permission: true,
+        meta: { key: 'ApexCharts' },
+        children: [
+          {
+            path: 'line',
+            name: 'Line',
+            component: getComponent('chart/apexCharts/line/index'),
+            permission: true,
+            meta: { key: 'Line' },
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 Vue.use(Router);
