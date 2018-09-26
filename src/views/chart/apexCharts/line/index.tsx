@@ -2,7 +2,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import { Row, Col, Card } from 'ant-design-vue';
 import { loadApexCharts } from '@/utils/index';
 
-import { lineChartOptions, lineChartDatalabelOptions } from './params';
+import { lineChartOptions, lineChartDatalabelOptions, lineChartZoomableOptions } from './params';
 
 import './index.less';
 
@@ -23,6 +23,8 @@ export default class Line extends Vue {
 
   lineChart: any = null;
   lineChartDatalabel: any = null;
+  lineChartZoomable: any = null;
+
   mounted() {
     loadApexCharts().then(() => {
       this.lineChart = new window.ApexCharts(
@@ -35,6 +37,11 @@ export default class Line extends Vue {
         lineChartDatalabelOptions,
       );
       this.lineChartDatalabel.render();
+      this.lineChartZoomable = new window.ApexCharts(
+        document.querySelector('#line-chart-zoomable'),
+        lineChartZoomableOptions,
+      );
+      this.lineChartZoomable.render();
     });
   }
   render() {
@@ -51,6 +58,12 @@ export default class Line extends Vue {
             <a-card>
               <h2 class="item-title">line-chart-datalabel</h2>
               <div id="line-chart-datalabel"></div>
+            </a-card>
+          </a-col>
+          <a-col {...{ props: this.itemLayout }}>
+            <a-card>
+              <h2 class="item-title">line-chart-zoomable</h2>
+              <div id="line-chart-zoomable"></div>
             </a-card>
           </a-col>
         </a-row>
