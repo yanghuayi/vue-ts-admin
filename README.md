@@ -38,7 +38,7 @@ yarn install
 
 ![dashboard](/images/dashboard.png)
 ![baseInfo](/images/baseInfo.png)
-
+![lineChart](/images/line-chart.png)
 
 
 ### Compiles and hot-reloads for development
