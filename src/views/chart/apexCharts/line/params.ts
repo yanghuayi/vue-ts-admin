@@ -387,3 +387,364 @@ export const lineChartAnnotationsOptions = {
     },
   }],
 };
+
+function generateDayWiseTimeSeries(e: any, t: any, a: any) {
+  const r = [];
+  for (let o = 0; o < t;) {
+    const n = e;
+    const i = Math.floor(Math.random() * ((a.max - a.min) + 1)) + a.min;
+    r.push([n, i]);
+    e += 864e5;
+    o++;
+  }
+  return r;
+}
+
+export const lineChartSyncingOptions = {
+  chart: {
+    type: 'line',
+    height: 160,
+    toolbar: {
+      tools: {
+        zoom: !1,
+        pan: !1,
+        selection: !1,
+        download: !1,
+        reset: !0,
+      },
+    },
+  },
+  colors: ['#727cf5'],
+  stroke: {
+    width: [3],
+    curve: 'straight',
+  },
+  dataLabels: {
+    enabled: !1,
+  },
+  fill: {
+    opacity: 1,
+  },
+  series: [{
+    data: generateDayWiseTimeSeries(new Date('11 Feb 2017').getTime(), 20, {
+      min: 10,
+      max: 30,
+    }),
+  }],
+  xaxis: {
+    type: 'datetime',
+  },
+  grid: {
+    row: {
+      colors: ['transparent', 'transparent'],
+      opacity: 0.2,
+    },
+    borderColor: '#f1f3fa',
+  },
+};
+
+export const lineChartSyncing2Options = {
+  chart: {
+    height: 200,
+    type: 'line',
+    stacked: !0,
+    scroller: {
+      enabled: !0,
+      thumb: {
+        height: 4,
+        background: '#0acf97',
+      },
+      scrollButtons: {
+        enabled: !0,
+        size: 6,
+        borderWidth: 2,
+        borderColor: '#0acf97',
+        fillColor: '#0acf97',
+      },
+    },
+    selection: {
+      xaxis: {
+        min: new Date('19 Feb 2017').getTime(),
+        max: new Date('26 Feb 2017').getTime(),
+      },
+    },
+    // events: {
+    //   selection(e, t) {
+    //     chartline2.updateOptions({
+    //       xaxis: {
+    //         min: t.xaxis.min,
+    //         max: t.xaxis.max,
+    //       },
+    //     }, !1, !1);
+    //   },
+    //   updated(e, t) {
+    //     chartline2.updateOptions({
+    //       xaxis: {
+    //         min: t.config.xaxis.min,
+    //         max: t.config.xaxis.max,
+    //       },
+    //     }, !1, !1);
+    //   },
+    // },
+  },
+  colors: ['#6c757d'],
+  dataLabels: {
+    enabled: !1,
+  },
+  stroke: {
+    width: [3],
+    curve: 'smooth',
+  },
+  series: [{
+    data: generateDayWiseTimeSeries(new Date('11 Feb 2017').getTime(), 20, {
+      min: 10,
+      max: 60,
+    }),
+  }],
+  fill: {
+    gradient: {
+      enabled: !0,
+      opacityFrom: 0.6,
+      opacityTo: 0.8,
+    },
+  },
+  legend: {
+    position: 'top',
+    horizontalAlign: 'left',
+  },
+  xaxis: {
+    type: 'datetime',
+  },
+  grid: {
+    row: {
+      colors: ['transparent', 'transparent'],
+      opacity: 0.2,
+    },
+    borderColor: '#f1f3fa',
+  },
+};
+
+export const lineChartGradientOptions = {
+  chart: {
+    height: 374,
+    type: 'line',
+    shadow: {
+      enabled: !1,
+      color: '#bbb',
+      top: 3,
+      left: 2,
+      blur: 3,
+      opacity: 1,
+    },
+  },
+  stroke: {
+    width: 5,
+    curve: 'smooth',
+  },
+  series: [{
+    name: 'Likes',
+    data: [4, 3, 10, 9, 29, 19, 22, 9, 12, 7, 19, 5, 13, 9, 17, 2, 7, 5],
+  }],
+  xaxis: {
+    type: 'datetime',
+    categories: ['1/11/2000', '2/11/2000', '3/11/2000', '4/11/2000', '5/11/2000', '6/11/2000', '7/11/2000',
+      '8/11/2000', '9/11/2000', '10/11/2000', '11/11/2000', '12/11/2000', '1/11/2001', '2/11/2001',
+      '3/11/2001', '4/11/2001', '5/11/2001', '6/11/2001'],
+  },
+  title: {
+    text: 'Social Media',
+    align: 'left',
+    style: {
+      fontSize: '16px',
+      color: '#666',
+    },
+  },
+  fill: {
+    type: 'gradient',
+    gradient: {
+      shade: 'dark',
+      gradientToColors: ['#fa5c7c'],
+      shadeIntensity: 1,
+      type: 'horizontal',
+      opacityFrom: 1,
+      opacityTo: 1,
+      stops: [0, 100, 100, 100],
+    },
+  },
+  markers: {
+    size: 4,
+    opacity: 0.9,
+    colors: ['#ffbc00'],
+    strokeColor: '#fff',
+    strokeWidth: 2,
+    style: 'inverted',
+    hover: {
+      size: 7,
+    },
+  },
+  yaxis: {
+    min: -10,
+    max: 40,
+    title: {
+      text: 'Engagement',
+    },
+  },
+  grid: {
+    row: {
+      colors: ['transparent', 'transparent'],
+      opacity: 0.2,
+    },
+    borderColor: '#f1f3fa',
+  },
+  responsive: [{
+    breakpoint: 600,
+    options: {
+      chart: {
+        toolbar: {
+          show: !1,
+        },
+      },
+      legend: {
+        show: !1,
+      },
+    },
+  }],
+};
+
+
+export const lineChartMissingOptions = {
+  chart: {
+    height: 380,
+    type: 'line',
+    zoom: {
+      enabled: !1,
+    },
+    animations: {
+      enabled: !1,
+    },
+  },
+  stroke: {
+    width: [5, 5, 4],
+    curve: 'straight',
+  },
+  series: [{
+    name: 'Peter',
+    data: [5, 5, 10, 8, 7, 5, 4, null, null, null, 10, 10, 7, 8, 6, 9],
+  }, {
+    name: 'Johnny',
+    data: [10, 15, null, 12, null, 10, 12, 15, null, null, 12, null, 14, null, null, null],
+  }, {
+    name: 'David',
+    data: [null, null, null, null, 3, 4, 1, 3, 4, 6, 7, 9, 5, null, null, null],
+  }],
+  colors: ['#ffbc00', '#0acf97', '#39afd1'],
+  labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+  grid: {
+    row: {
+      colors: ['transparent', 'transparent'],
+      opacity: 0.2,
+    },
+    borderColor: '#f1f3fa',
+  },
+};
+
+export const lineChartDashedOptions = {
+  chart: {
+    height: 380,
+    type: 'line',
+    zoom: {
+      enabled: !1,
+    },
+  },
+  dataLabels: {
+    enabled: !1,
+  },
+  stroke: {
+    width: [3, 5, 3],
+    curve: 'straight',
+    dashArray: [0, 8, 5],
+  },
+  series: [{
+    name: 'Session Duration',
+    data: [45, 52, 38, 24, 33, 26, 21, 20, 6, 8, 15, 10],
+  }, {
+    name: 'Page Views',
+    data: [35, 41, 62, 42, 13, 18, 29, 37, 36, 51, 32, 35],
+  }, {
+    name: 'Total Visits',
+    data: [87, 57, 74, 99, 75, 38, 62, 47, 82, 56, 45, 47],
+  }],
+  markers: {
+    size: 0,
+    style: 'hollow',
+  },
+  xaxis: {
+    categories: ['01 Jan', '02 Jan', '03 Jan', '04 Jan', '05 Jan', '06 Jan', '07 Jan', '08 Jan', '09 Jan', '10 Jan',
+      '11 Jan', '12 Jan'],
+  },
+  colors: ['#6c757d', '#0acf97', '#39afd1'],
+  tooltip: {
+    y: {
+      title: {
+        formatter(e: any) {
+          if (e === 'Session Duration') {
+            return `${e} (mins)`;
+          } else if (e === 'Page Views') {
+            return `${e} per session`;
+          }
+          return e;
+        },
+      },
+    },
+  },
+  grid: {
+    borderColor: '#f1f3fa',
+  },
+};
+
+export const lineChartRealtimedOptions = {
+  chart: {
+    height: 380,
+    type: 'line',
+    animations: {
+      dynamicAnimation: {
+        enabled: !1,
+      },
+    },
+    toolbar: {
+      show: !1,
+    },
+  },
+  dataLabels: {
+    enabled: !1,
+  },
+  stroke: {
+    width: [3, 3],
+    curve: 'smooth',
+  },
+  series: [{
+    name: 'Laptops',
+    data: [45, 52, 38, 24, 33, 26, 21, 20, 6, 8, 15, 10, 51, 32, 12],
+  }, {
+    name: 'Desktops',
+    data: [35, 41, 62, 42, 13, 18, 29, 37, 36, 51, 32, 35, 20, 51, 36],
+  }],
+  markers: {
+    size: 0,
+  },
+  colors: ['#fa5c7c', '#727cf5'],
+  xaxis: {
+    range: 14,
+    tickAmount: 14,
+  },
+  legend: {
+    show: !1,
+  },
+  grid: {
+    row: {
+      colors: ['transparent', 'transparent'],
+      opacity: 0.2,
+    },
+    borderColor: '#f1f3fa',
+  },
+};
