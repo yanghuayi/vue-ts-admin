@@ -79,6 +79,13 @@ export const asyncRouterMap: routerItem[] = [
             permission: true,
             meta: { key: 'Line' },
           },
+          {
+            path: 'area',
+            name: 'Area',
+            component: getComponent('chart/apexCharts/area/index'),
+            permission: true,
+            meta: { key: 'Area' },
+          },
         ],
       },
     ],

@@ -1,7 +1,6 @@
 interface Window {
   api: any,
   Fetch: any,
-  apexCharts: any,
   ApexCharts: any,
 }
 

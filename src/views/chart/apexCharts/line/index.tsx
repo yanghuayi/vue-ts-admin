@@ -43,6 +43,8 @@ export default class Line extends Vue {
   lineChartDashedChart: any = null;
   lineChartRealtimedChart: any = null;
 
+  timer: any = null;
+
   mounted() {
     loadApexCharts().then(() => {
       this.lineChart = new window.ApexCharts(
@@ -97,7 +99,7 @@ export default class Line extends Vue {
         lineChartRealtimedOptions,
       );
       this.lineChartRealtimedChart.render();
-      window.setInterval(() => {
+      this.timer = window.setInterval(() => {
         this.lineChartRealtimedChart.appendData([{
           data: [Math.floor((20 * Math.random()) + 20)],
         }, {
@@ -106,6 +108,11 @@ export default class Line extends Vue {
       }, 1e3);
     });
   }
+
+  beforeDestroy() {
+    window.clearInterval(this.timer);
+  }
+
   render() {
     return (
       <div class="line-wrap">

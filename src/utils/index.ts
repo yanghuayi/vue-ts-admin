@@ -48,8 +48,8 @@ function numFormat(num: number) {
 }
 
 export const loadApexCharts = () => new Promise(((resolve, reject) => {
-  if (window.apexCharts) {
-    resolve(window.apexCharts);
+  if (window.ApexCharts) {
+    resolve(window.ApexCharts);
   }
   const script: any = document.createElement('script');
   script.type = 'text/javascript';
@@ -60,7 +60,7 @@ export const loadApexCharts = () => new Promise(((resolve, reject) => {
     .appendChild(script);
   script.onload = function onload() {
     if (!this.readyState || this.readyState === 'loaded' || this.readyState === 'complete') {
-      resolve(window.apexCharts);
+      resolve(window.ApexCharts);
     }
     script.onload = null;
     script.onreadystatechange = null;
