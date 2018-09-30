@@ -111,6 +111,32 @@ export const asyncRouterMap: routerItem[] = [
       },
     ],
   },
+  {
+    path: '/components',
+    icon: 'appstore-o',
+    name: 'Components',
+    component: getComponent('components/index'),
+    permission: true,
+    meta: { key: 'Components' },
+    children: [
+      {
+        path: 'form',
+        name: 'Form',
+        component: getComponent('components/form/index'),
+        permission: true,
+        meta: { key: 'Form' },
+        children: [
+          {
+            path: 'baseForm',
+            name: 'BaseForm',
+            component: getComponent('components/form/baseForm/index'),
+            permission: true,
+            meta: { key: 'BaseForm' },
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 Vue.use(Router);
