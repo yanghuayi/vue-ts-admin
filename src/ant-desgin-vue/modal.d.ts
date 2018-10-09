@@ -3,45 +3,107 @@ import { AntdVueComponent } from './component';
 
 /** AModal Layout Component */
 export declare class AModal extends AntdVueComponent {
-  afterClose: Function
+  afterClose?: Function
 
-  bodyStyle: object
+  bodyStyle?: object
 
-  cancelText: string | VNode
+  cancelText?: string | VNode
 
-  closable: boolean
+  closable?: boolean
 
-  confirmLoading: boolean
+  confirmLoading?: boolean
 
-  destroyOnClose: boolean
+  destroyOnClose?: boolean
 
-  footer: string | VNode
+  footer?: string | VNode
 
-  getContainer: (instance: any) => HTMLElement
+  getContainer?: (instance: any) => HTMLElement
 
-  mask: boolean
+  mask?: boolean
 
-  maskClosable: boolean
+  maskClosable?: boolean
 
-  maskStyle: object
+  maskStyle?: object
 
-  okText: string | VNode
+  okText?: string | VNode
 
-  okType: string
+  okType?: string
 
-  style: object
+  style?: object
 
-  title: string | VNode
+  title?: string | VNode
 
-  visible: boolean
+  visible?: boolean
 
-  width: string | number
+  width?: string | number
 
-  wrapClassName: string
+  wrapClassName?: string
 
-  zIndex: number
+  zIndex?: number
 
-  cancel: (e: Event) => void
+  content?: string | VNode
 
-  ok: (e: Event) => void
+  cancel?: (e: Event) => void
+
+  ok?: (e: Event) => void
+
+  onOk?: (e: Event) => void
+
+  static info: (params: AModalParams) => void
+
+  static success: (params: AModalParams) => void
+
+  static error: (params: AModalParams) => void
+
+  static warning: (params: AModalParams) => void
+
+  static confirm: (params: AModalParams) => void
+}
+
+export declare class AModalParams {
+  afterClose?: Function
+
+  bodyStyle?: object
+
+  cancelText?: string | VNode
+
+  closable?: boolean
+
+  confirmLoading?: boolean
+
+  destroyOnClose?: boolean
+
+  footer?: string | VNode
+
+  getContainer?: (instance: any) => HTMLElement
+
+  mask?: boolean
+
+  maskClosable?: boolean
+
+  maskStyle?: object
+
+  okText?: string | VNode
+
+  okType?: string
+
+  style?: object
+
+  title?: string | VNode
+
+  visible?: boolean
+
+  width?: string | number
+
+  wrapClassName?: string
+
+  zIndex?: number
+
+  content?: string | VNode
+
+  cancel?: (e: Event) => void
+
+  ok?: (e: Event) => void
+
+  onOk?: (e: Event) => void
 }
