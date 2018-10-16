@@ -1,92 +1,28 @@
 {
-  "name": "vue-car-admin",
-  "version": "0.1.0",
-  "private": true,
+  "name": "vue-ts-admin",
+  "version": "0.0.1",
+  "description": "一个基于 vue+vuex+ant-design-vue+typescript的中后台脚手架",
+  "main": ".eslintrc.js",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "theme": {
-    "primary-color": "#1DA57A",
-    "border-radius-base": "3px",
-    "border-radius-sm": "2px",
-    "shadow-color": "rgba(0,0,0,0.05)",
-    "shadow-1-down": "4px 4px 40px @shadow-color",
-    "border-color-split": "#f4f4f4",
-    "border-color-base": "#e5e5e5",
-    "font-size-base": "13px",
-    "text-color": "#666"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yanghuayi/vue-ts-admin.git"
   },
+  "keywords": [
+    "vue",
+    "vuex",
+    "ant-design-vue",
+    "typescript"
+  ],
+  "author": "xiaoyang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yanghuayi/vue-ts-admin/issues"
+  },
+  "homepage": "https://github.com/yanghuayi/vue-ts-admin#readme",
   "dependencies": {
-    "@types/chart.js": "^2.7.34",
-    "@types/js-cookie": "^2.2.0",
-    "@types/lodash": "^4.14.116",
-    "@types/mockjs": "^1.0.1",
-    "@types/qs": "^6.5.1",
-    "ant-design-vue": "^1.1.1",
-    "axios": "^0.18.0",
-    "babel-plugin-import": "^1.8.0",
-    "body-parser": "^1.18.3",
-    "chart.js": "^2.7.2",
-    "cookies": "^0.7.2",
-    "extract-text-webpack-plugin": "^3.0.2",
-    "js-cookie": "^2.2.0",
-    "jsonp": "^0.2.1",
-    "lodash": "^4.17.10",
-    "mockjs": "^1.0.1-beta3",
-    "moment": "^2.22.2",
-    "path-to-regexp": "^2.2.1",
-    "q": "^1.5.1",
-    "qs": "^6.5.2",
-    "vue": "^2.5.17",
-    "vue-amap": "^0.5.8",
-    "vue-class-component": "^6.0.0",
-    "vue-property-decorator": "^7.0.0",
-    "vue-router": "^3.0.1",
-    "vuex": "^3.0.1"
-  },
-  "devDependencies": {
-    "@types/jsonp": "^0.2.0",
-    "@types/path-to-regexp": "^1.7.0",
-    "@vue/cli-plugin-babel": "^3.0.0",
-    "@vue/cli-plugin-eslint": "^3.0.0",
-    "@vue/cli-plugin-typescript": "^3.0.0",
-    "@vue/cli-service": "^3.0.0",
-    "@vue/eslint-config-airbnb": "^3.0.0",
-    "@vue/eslint-config-typescript": "^3.0.0",
-    "babel-plugin-component": "^1.1.1",
-    "babel-plugin-jsx-v-model": "^2.0.3",
-    "babel-plugin-syntax-jsx": "^6.18.0",
-    "less": "^3.0.4",
-    "less-loader": "^4.1.0",
-    "typescript": "^3.0.0",
-    "vue-jsx-hot-loader": "^1.4.0",
-    "vue-template-compiler": "^2.5.17"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "@vue/airbnb",
-      "@vue/typescript"
-    ],
-    "rules": {},
-    "parserOptions": {
-      "parser": "typescript-eslint-parser"
-    }
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ]
+    "express": "^4.16.4"
+  }
 }
