@@ -23,6 +23,9 @@
   },
   "homepage": "https://github.com/yanghuayi/vue-ts-admin#readme",
   "dependencies": {
-    "express": "^4.16.4"
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mockjs": "^1.0.1-beta3",
+    "qs": "^6.5.2"
   }
 }
