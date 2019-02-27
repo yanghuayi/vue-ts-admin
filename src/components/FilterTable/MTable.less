@@ -1,0 +1,68 @@
+@import '../../styles/var.less';
+
+.m-table {
+  padding: 10px;
+  position: relative;
+  transition: all .4s ease-in-out;
+  .el-dropdown-link {
+    font-size: 12px;
+    color: @primary-color;
+    cursor: pointer;
+  }
+  .pagination {
+    padding: 10px 0;
+  }
+  .el-table {
+    th> {
+      background: #fafafa;
+      color: rgba(0,0,0,.85);
+      .cell {
+        font-size: 13px;
+        text-align: center;
+      }
+    }
+    td,
+    th {
+      .cell {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        font-size: 12px;
+      }
+    }
+  } 
+  .table-opreat {
+    font-size: 12px;
+    a {
+      margin: 0 5px;
+      &.linkDisabled {
+        color: #acacac;
+        &:hover {
+          color: #acacac;
+          opacity: 1;
+          cursor: not-allowed;
+        }
+      }
+      &.link-blue {
+        color: @primary-color;
+      }
+      &.link-red {
+        color: #fa4059;
+      }
+      &.link-green {
+        color: #52c41a;
+      }
+      &.link-orange {
+        color: #faad14;
+      }
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+    .disabled {
+      color: #acacac;
+      opacity: 1;
+      cursor: not-allowed;
+    }
+  }
+}

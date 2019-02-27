@@ -1,0 +1,431 @@
+[
+  {
+    "id": "1",
+    "icon": "icon-dashboard",
+    "name": "首页",
+    "route": "/",
+    "role": true
+  },
+  {
+    "id": "2",
+    "icon": "icon-xitong",
+    "name": "系统管理",
+    "role": [
+      "/sys/org/list",
+      "/sys/role/list",
+      "/sys/user/list",
+      "/sys/shop/list",
+      "/sys/permission/list",
+      "/sys/weixinuser/list"
+    ]
+  },
+  {
+    "id": "21",
+    "bpid": "2",
+    "mpid": "2",
+    "name": "门店管理",
+    "route": "/system/shopManage",
+    "role": "/sys/org/list"
+  },
+  {
+    "id": "22",
+    "bpid": "2",
+    "mpid": "2",
+    "name": "角色管理",
+    "route": "/system/role",
+    "role": "/sys/role/list"
+  },
+  {
+    "id": "23",
+    "bpid": "2",
+    "mpid": "2",
+    "name": "web用户",
+    "route": "/system/user",
+    "role": "/sys/user/list"
+  },
+  {
+    "id": "24",
+    "bpid": "2",
+    "mpid": "2",
+    "name": "店铺设置",
+    "route": "/system/shopSettings",
+    "role": "/sys/shop/list"
+  },
+  {
+    "id": "25",
+    "bpid": "2",
+    "mpid": "-1",
+    "name": "部门管理",
+    "route": "/system/org",
+    "role": true
+  },
+  {
+    "id": "26",
+    "bpid": "2",
+    "mpid": "2",
+    "name": "权限管理",
+    "route": "/system/authorityManage",
+    "role": "/sys/permission/list"
+  },
+  {
+    "id": "27",
+    "bpid": "2",
+    "mpid": "2",
+    "name": "微信用户",
+    "route": "/system/weChatManage",
+    "role": "/sys/weixinuser/list"
+  },
+  {
+    "id": "3",
+    "icon": "icon-chepai",
+    "name": "车型管理",
+    "role": [
+      "/model/brand/list",
+      "/model/series/list",
+      "/model/vm/list"
+    ]
+  },
+  {
+    "id": "31",
+    "bpid": "3",
+    "mpid": "3",
+    "name": "品牌管理",
+    "route": "/allModalManage/brandManage",
+    "role": "/model/brand/list"
+  },
+  {
+    "id": "32",
+    "bpid": "3",
+    "mpid": "3",
+    "name": "车系管理",
+    "route": "/allModalManage/seriesManage",
+    "role": "/model/series/list"
+  },
+  {
+    "id": "33",
+    "bpid": "3",
+    "mpid": "3",
+    "name": "车型管理",
+    "route": "/allModalManage/modalManage",
+    "role": "/model/vm/list"
+  },
+  {
+    "id": "4",
+    "icon": "icon-shebeiliebiao",
+    "name": "设备管理",
+    "route": "/terminalManage",
+    "role": [
+      "/terminal/manage/list"
+    ]
+  },
+  {
+    "id": "5",
+    "icon": "icon-car",
+    "name": "车辆管理",
+    "route": "/carManage",
+    "role": [
+      "/car/vehicle/list",
+      "/car/monitor/list"
+    ]
+  },
+  {
+    "id": "51",
+    "bpid": "5",
+    "mpid": "5",
+    "icon": "setting",
+    "name": "车辆信息",
+    "route": "/carManage/carList",
+    "role": "/car/vehicle/list"
+  },
+  {
+    "id": "52",
+    "bpid": "5",
+    "mpid": "5",
+    "icon": "setting",
+    "name": "车辆监控",
+    "route": "/carManage/carMonitor",
+    "role": "/car/monitor/list"
+  },
+  {
+    "id": "6",
+    "icon": "icon-web-icon-",
+    "name": "客户管理",
+    "route": "/clientsManage",
+    "role": [
+      "/user/customerattr/list",
+      "/user/customer/list"
+    ]
+  },
+  {
+    "id": "61",
+    "bpid": "6",
+    "mpid": "6",
+    "name": "客户基本信息",
+    "route": "/clientsManage/clientsInfo",
+    "role": "/user/customer/list",
+    "icon": "setting"
+  },
+  {
+    "id": "62",
+    "bpid": "6",
+    "mpid": "6",
+    "name": "客户车辆信息",
+    "route": "/clientsManage/clientsCar",
+    "role": "/user/customerattr/list",
+    "icon": "setting"
+  },
+  {
+    "id": "621",
+    "bpid": "61",
+    "mpid": "-1",
+    "name": "客户车辆详情",
+    "route": "/clientsManage/clientsCar/clientsCarDetails",
+    "role": "/user/customerattr/list"
+  },
+  {
+    "id": "7",
+    "icon": "icon-baoyang",
+    "name": "保养管理",
+    "route": "/reverseManage",
+    "role": [
+      "/mainten/appointorder/list"
+    ]
+  },
+  {
+    "id": "71",
+    "bpid": "7",
+    "mpid": "7",
+    "name": "保养订单",
+    "route": "/reverseManage/reverseOrder",
+    "role": "/mainten/appointorder/list",
+    "icon": "setting"
+  },
+  {
+    "id": "711",
+    "bpid": "71",
+    "mpid": "-1",
+    "name": "App预约",
+    "route": "/reverseManage/reverseOrder/appReverse",
+    "role": "/mainten/appointorder/list"
+  },
+  {
+    "id": "712",
+    "bpid": "71",
+    "mpid": "-1",
+    "name": "系统转预约",
+    "route": "/reverseManage/reverseOrder/sysReverse",
+    "role": "/mainten/appointorder/list"
+  },
+  {
+    "id": "713",
+    "bpid": "71",
+    "mpid": "-1",
+    "name": "今日预约到店",
+    "route": "/reverseManage/reverseOrder/todayReverse",
+    "role": "/mainten/appointorder/list"
+  },
+  {
+    "id": "714",
+    "bpid": "71",
+    "mpid": "-1",
+    "name": "编辑预约单",
+    "route": "/reverseManage/reverseOrder/reverseDetails",
+    "role": "/mainten/appointorder/list"
+  },
+  {
+    "id": "72",
+    "bpid": "7",
+    "mpid": "7",
+    "name": "保养提醒",
+    "route": "/reverseManage/maintainRemind",
+    "role": "/mainten/conf/list",
+    "icon": "setting"
+  },
+  {
+    "id": "721",
+    "bpid": "72",
+    "mpid": "72",
+    "name": "实时里程查询",
+    "route": "/reverseManage/maintainRemind/realTimeSearch",
+    "role": "/mainten/conf/list"
+  },
+  {
+    "id": "722",
+    "bpid": "72",
+    "mpid": "72",
+    "name": "未处理保养提醒",
+    "route": "/reverseManage/maintainRemind/unMaintain",
+    "role": "/mainten/conf/list"
+  },
+  {
+    "id": "7221",
+    "bpid": "722",
+    "mpid": "-1",
+    "name": "保养里程",
+    "route": "/reverseManage/maintainRemind/unMaintain/remainDistance",
+    "role": "/mainten/conf/list"
+  },
+  {
+    "id": "7222",
+    "bpid": "722",
+    "mpid": "-1",
+    "name": "保养时间",
+    "route": "/reverseManage/maintainRemind/unMaintain/remainTime",
+    "role": "/mainten/conf/list"
+  },
+  {
+    "id": "7223",
+    "bpid": "722",
+    "mpid": "-1",
+    "name": "保养详情",
+    "route": "/reverseManage/maintainRemind/unMaintain/reverseDetail",
+    "role": "/mainten/conf/list"
+  },
+  {
+    "id": "723",
+    "bpid": "72",
+    "mpid": "72",
+    "name": "已处理保养提醒",
+    "route": "/reverseManage/maintainRemind/processedMaintain",
+    "role": "/mainten/remainOrder/findList"
+  },
+  {
+    "id": "73",
+    "bpid": "7",
+    "mpid": "7",
+    "name": "保养提醒设置",
+    "route": "/reverseManage/remainSettings",
+    "role": "/mainten/remainOrder/findList",
+    "icon": "setting"
+  },
+  {
+    "id": "8",
+    "icon": "icon-jiuyuan",
+    "name": "救援管理",
+    "route": "/rescueManage",
+    "role": "/rescue/order/list"
+  },
+  {
+    "id": "81",
+    "bpid": "8",
+    "mpid": "8",
+    "icon": "setting",
+    "name": "救援服务",
+    "route": "/rescueManage/rescueService",
+    "role": "/rescue/order/list"
+  },
+  {
+    "id": "81",
+    "bpid": "8",
+    "mpid": "-1",
+    "icon": "setting",
+    "name": "救援服务",
+    "route": "/rescueManage/rescueService/rescueDetail",
+    "role": "/rescue/order/list"
+  },
+  {
+    "id": "82",
+    "bpid": "8",
+    "mpid": "8",
+    "name": "救援统计",
+    "route": "/rescueManage/rescueCount",
+    "role": "/rescue/order/list"
+  },
+  {
+    "id": "9",
+    "icon": "icon-xinxi",
+    "name": "信息管理",
+    "route": "/infoManage",
+    "role": [
+      "/msg/info/list",
+      "/msg/examine/list",
+      "/msg/systemMessage/list"
+    ]
+  },
+  {
+    "id": "91",
+    "bpid": "9",
+    "mpid": "9",
+    "icon": "setting",
+    "name": "信息发布",
+    "route": "/infoManage/infoPublic",
+    "role": "/msg/info/list"
+  },
+  {
+    "id": "911",
+    "bpid": "91",
+    "mpid": "-1",
+    "name": "信息列表",
+    "route": "/infoManage/infoPublic/infoPublicList",
+    "role": "/msg/info/list"
+  },
+  {
+    "id": "912",
+    "bpid": "91",
+    "mpid": "-1",
+    "name": "店铺广告",
+    "route": "/infoManage/infoPublic/shopSeq",
+    "role": "/msg/info/list"
+  },
+  {
+    "id": "92",
+    "bpid": "9",
+    "mpid": "9",
+    "icon": "setting",
+    "name": "信息审核",
+    "route": "/infoManage/infoReview",
+    "role": "/msg/examine/list"
+  },
+  {
+    "id": "921",
+    "bpid": "92",
+    "mpid": "-1",
+    "name": "信息审核",
+    "route": "/infoManage/infoReview/infoReviewDetail",
+    "role": "/msg/examine/list"
+  },
+  {
+    "id": "93",
+    "bpid": "9",
+    "mpid": "9",
+    "icon": "setting",
+    "name": "系统消息",
+    "route": "/infoManage/sysInfo",
+    "role": "/msg/systemMessage/list"
+  },
+  {
+    "id": "11",
+    "icon": "icon-alarm-settings",
+    "name": "告警管理",
+    "route": "/alarm",
+    "role": [
+      "/fence/alarm/list",
+      "/fence/rail/list"
+    ]
+  },
+  {
+    "id": "111",
+    "bpid": "11",
+    "mpid": "11",
+    "icon": "setting",
+    "name": "告警消息",
+    "route": "/alarm/alertList",
+    "role": "/fence/alarm/list"
+  },
+  {
+    "id": "112",
+    "bpid": "11",
+    "mpid": "11",
+    "icon": "setting",
+    "name": "电子围栏",
+    "route": "/alarm/elecFence",
+    "role": "/fence/rail/list"
+  },
+  {
+    "id": "12",
+    "icon": "icon-tongji",
+    "name": "数据统计",
+    "route": "/dataManage",
+    "role": "/statistic/data/statNew"
+  }
+]

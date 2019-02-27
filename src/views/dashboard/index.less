@@ -1,0 +1,189 @@
+@import '../../styles/var.less';
+.container {
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  padding: 7px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  .dash-col {
+    margin-bottom: 20px;
+    .sub-item {
+      margin-bottom: 20px;
+    }
+  }
+  .dash-box {
+    position: relative;
+    border-radius: 4px;
+    .opreat {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      color: @text-color;
+      font-size: 20px;
+    }
+    .title {
+      color: @text-color;
+      font-size: 16px;
+      text-transform: uppercase;
+    }
+  }
+  .dash-card {
+    border-radius: 4px;
+    .ant-card-body {
+      position: relative;
+      padding: 20px;  
+    }
+    h3 {
+      color: @grey-color;
+      font-size: 14px;
+    }
+    .icon {
+      width: 40px;
+      height: 40px;
+      background-color: #dbdefd;
+      color: @primary-color;
+      line-height: 40px;
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      font-size: 18px;
+      border-radius: 4px;
+    }
+    .number {
+      color: @text-color;
+      font-size: 2rem;
+      margin: 10px 0 15px 0;
+    }
+    .footer {
+      font-size: 1rem;
+      .s-number {
+        font-size: 14px;
+        margin-right: 20px;
+        &.green {
+          color: @green-color;
+          .anticon {
+            color: @green-color;
+          }
+        }
+        &.red {
+          color: @red-color;
+          .anticon {
+            color: @red-color;
+          }
+        }
+      }
+      .txt {
+        color: @grey-color;
+        font-size: 14px;
+      }
+    }
+  }
+  .dash-bar-chart {
+    height: 340px;
+  }
+  .revenue-chart {
+    margin-bottom: 20px;
+    .ant-card-body {
+      position: relative;
+      padding: 20px;  
+    }
+    .opreat {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      color: @text-color;
+      font-size: 20px;
+    }
+    .title {
+      color: @text-color;
+      font-size: 16px;
+    }
+    .float-text {
+      position: absolute;
+      left: 8%;
+      bottom: 200px;
+      max-width: 350px;
+      padding: 20px;
+      z-index: 1;
+      .txt {
+        color: @text-color;
+        font-size: 15px;
+      }
+      .tips {
+        color: @grey-color;
+        font-size: 12px;
+      }
+    }
+    .week-data {
+      background-color: #f9f9fd;
+      padding: 20px 0;
+      display: flex;
+      justify-content: center;
+      .item {
+        width: 50%;
+        text-align: center;
+        .item-title {
+          color: @grey-color;
+          font-size: 13px;
+        }
+        .number {
+          font-size: 30px;
+          color: @text-color;
+          margin-bottom: 0;
+          &::before{
+            content: '';
+            width: 12px;
+            height: 12px;
+            background-color: @primary-color;
+            display: inline-block;
+            border-radius: 50%;
+            position: relative;
+            left: -14px;
+            top: -5px;
+          }
+          &.number2 {
+            &::before{
+              background-color: @green-color;
+            }
+          }
+        }
+      }
+    }
+  }
+  .total-wrap {
+    height: 589px;
+    .filter-wrap {
+      margin: 15px 0;
+      .tips {
+        margin-left: 10px;
+      }
+    }
+    .chart-widget-list {
+      margin-top: 40px;
+      p {
+        border-bottom: 1px solid #f1f3fa;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        .mdi-square {
+          width: 10px;
+          height: 10px;
+          display: inline-block;
+          background-color: @secondary;
+          &.text-primary {
+            background-color: @primary-color;
+          }
+          &.text-danger {
+            background-color: @danger;
+          }
+          &.text-success {
+            background-color: @success;
+          }
+        }
+        .fr {
+          float: right;
+        }
+      }
+    }
+  }
+}

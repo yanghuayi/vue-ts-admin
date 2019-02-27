@@ -1,0 +1,67 @@
+@import '../../../styles/var.less';
+@headerHeight: 56px;
+.header-wrap {
+  height: @headerHeight;
+  background-color: #fff;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 4px 4px 40px 0 rgba(0,0,0,.05);
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 999;
+  .menu-btn {
+    line-height: @headerHeight;
+    width: @headerHeight;
+    display: inline-block;
+    text-align: center;
+    transition: .3s all ease-in-out;
+    cursor: pointer;
+    &:hover {
+      color: @primary-color;
+      background-color: lighten(@primary-color, 25%);
+    }
+  }
+  .header-bread {
+    margin-left: 20px;
+    display: inline-block;
+    font-size: 12px;
+  }
+  .header-menu {
+    display: flex;
+    list-style: none;
+    color: #666;
+    li {
+      width: @headerHeight;
+      height: @headerHeight;
+      line-height: @headerHeight;
+      text-align: center;
+      cursor: pointer;
+      .el-badge__content.is-fixed {
+        top: 10px;
+      }
+      &:hover {
+        color: @primary-color;
+        background-color: lighten(@primary-color, 25%);
+        .el-dropdown-link {
+          color: @primary-color;
+        }
+      }
+      &.user {
+        width: auto;
+        padding: 0 20px;
+        .ant-dropdown-link {
+          height: 56px;
+          display: block;
+        }
+        .name {
+          margin-left: 10px;
+          font-size: 14px;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+}

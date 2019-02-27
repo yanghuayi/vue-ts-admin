@@ -1,0 +1,79 @@
+@import '../../styles/var.less';
+.filter-wrap {
+  position: relative;
+  .ant-form-inline .ant-form-item {
+    margin-right: 0;
+    width: 100%;
+    position: relative;
+    top: -4px;
+    .ant-form-item-control-wrapper,
+    .ant-form-item-control,
+    .ant-form-item-children {
+      width: 100%;
+    }
+  }
+  .btn-wrap {
+    text-align: left;
+    button {
+      margin-right: 10px;
+    }
+    .right-btn {
+      float: right;
+    }
+  }
+  .filter-mormal {
+    background-color: #fff;
+    padding: 10px;
+    transition: .4s all ease-in-out;
+    transform: translateY(0);
+    .ant-form {
+      position: relative;
+      top: 4px;
+    }
+  }
+  .filter-grade {
+    position: absolute;
+    background-color: #fff;
+    left: 0;
+    top: 0;
+    z-index: 999;
+    width: 100%;
+    padding: 10px;
+    transition: .4s all ease-in-out;
+    transform: translateY(-200%);
+    border-bottom: 1px solid #ececec;
+  }
+  .grade-btn {
+    margin-left: 20px;
+    font-size: 12px;
+    color: @primary-color;
+    [class*=" iconfont-"], [class^="iconfont-"] {
+      font-size: 14px;
+      margin-left: 5px;
+      position: relative;
+      top: 1px;
+    }
+  }
+  &.showGrade {
+    .filter-mormal {
+      transform: translateY(-100%);
+    }
+    .filter-grade {
+      transform: translateY(0);
+    }
+  }
+}
+.checkbox-list {
+  text-align: left;
+  .el-checkbox+.el-checkbox {
+    margin-left: 0;
+  }
+  .el-checkbox {
+    width: 25%;
+    margin-bottom: 10px;
+  }
+  .dialog-footer {
+    text-align: center;
+    margin-top: 10px;
+  }
+}
