@@ -17,11 +17,11 @@ import './index.less';
 @Component({
   name: 'Column',
   components: {
-  'a-row': Row,
-  'a-col': Col,
-  'a-card': Card,
-  }
-  })
+    'a-row': Row,
+    'a-col': Col,
+    'a-card': Card,
+  },
+})
 export default class Column extends Vue {
   itemLayout = {
     xxl: 12,
@@ -32,12 +32,19 @@ export default class Column extends Vue {
   }
 
   basicColumnChart: any = null;
+
   datalabelsColumnChart: any = null;
+
   stackedColumnChart: any = null;
+
   fullStackedColumnChart: any = null;
+
   rotateLabelsColumnChart: any = null;
+
   negativeValueColumnChart: any = null;
+
   distributedColumnChart: any = null;
+
   mounted() {
     loadApexCharts().then(() => {
       this.basicColumnChart = new window.ApexCharts(
@@ -77,6 +84,7 @@ export default class Column extends Vue {
       this.distributedColumnChart.render();
     });
   }
+
   render() {
     return (
       <div class="column-wrap">

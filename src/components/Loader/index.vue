@@ -8,13 +8,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Emit, Vue, Inject, Provide } from 'vue-property-decorator';
-import { defaultCoreCipherList } from 'constants';
+import {
+  Component, Prop, Emit, Vue, Inject, Provide,
+} from 'vue-property-decorator';
 
 @Component
 
 export default class Loader extends Vue {
   @Prop() private spinning!: boolean;
+
   @Prop() private fullScreen!: boolean;
 }
 </script>

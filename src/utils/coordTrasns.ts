@@ -18,6 +18,7 @@ export default class coordTrasns {
     result.lat = bdLat;
     return result;
   }
+
   static transToBaidu(piont: { lat: number, lng: number }, coordSys: CoordSys) {
     if (coordSys === 'gcj02ll') {
       return this.gcj2bd(piont.lat, piont.lng);

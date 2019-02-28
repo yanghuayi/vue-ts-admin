@@ -3,33 +3,40 @@ import {
   Emit,
   Vue,
 } from 'vue-property-decorator';
-import { Form, Button, Input, Icon } from 'ant-design-vue';
+import {
+  Form, Button, Input, Icon,
+} from 'ant-design-vue';
 import config from '@/utils/config';
 
 import './login.less';
 
 @Component({
   components: {
-  'a-form': Form,
-  'a-form-item': Form.Item,
-  'a-button': Button,
-  'a-input': Input,
-  'a-icon': Icon,
+    'a-form': Form,
+    'a-form-item': Form.Item,
+    'a-button': Button,
+    'a-input': Input,
+    'a-icon': Icon,
   },
   props: {
-  Form,
-  }
-  })
+    Form,
+  },
+})
 class Login extends Vue {
   loginForm: {
     username: string;
     password: string;
   } = { username: '', password: '' };
+
   config = config;
+
   imgToken = '';
+
   loading = false;
+
   created() {
   }
+
   @Emit()
   submitForm() {
     this.Form.validateFields((err: any, values: object) => {

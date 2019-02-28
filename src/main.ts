@@ -14,7 +14,7 @@ import './styles/global.less';
 const Apis = new Api({ baseUrl: process.env.NODE_ENV === 'production' ? '/api' : '/api' });
 // 全局api
 window.api = Apis.api;
-window.Fetch = Apis;
+window.ajax = Apis;
 
 const options = {
   position: 'fixed',

@@ -26,4 +26,3 @@ module.exports = function dashboard(req, res) {
     res.json(data);
   }, 2000);
 };
-

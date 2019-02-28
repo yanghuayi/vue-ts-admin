@@ -689,7 +689,8 @@ export const lineChartDashedOptions = {
         formatter(e: any) {
           if (e === 'Session Duration') {
             return `${e} (mins)`;
-          } else if (e === 'Page Views') {
+          }
+          if (e === 'Page Views') {
             return `${e} per session`;
           }
           return e;

@@ -27,7 +27,9 @@ const img404cloud = require('@/assets/404_images/404_cloud.png');
 @Component
 export default class UpdatePwd extends Vue {
   img404: any = img404;
+
   img404cloud: any = img404cloud;
+
   message: string = '特朗普说这个页面你不能进......';
 }
 </script>

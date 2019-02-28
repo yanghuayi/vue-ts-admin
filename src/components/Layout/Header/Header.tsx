@@ -1,5 +1,9 @@
-import { Component, Prop, Emit, Vue, Watch } from 'vue-property-decorator';
-import { Badge, Dropdown, Breadcrumb, Popover, Icon, Menu } from 'ant-design-vue';
+import {
+  Component, Prop, Emit, Vue, Watch,
+} from 'vue-property-decorator';
+import {
+  Badge, Dropdown, Breadcrumb, Popover, Icon, Menu,
+} from 'ant-design-vue';
 import Cookies from 'js-cookie';
 import { menuItem, routerItem } from '@/interface';
 import { routeToArray } from '@/utils';
@@ -13,23 +17,26 @@ interface breadItem {
 
 @Component({
   components: {
-  'a-badge': Badge,
-  'a-dropdown': Dropdown,
-  'a-menu-item': Menu.Item,
-  'a-breadcrumb': Breadcrumb,
-  'a-breadcrumb-item': Breadcrumb.Item,
-  'a-popover': Popover,
-  'menu-list': MenuList,
-  'a-icon': Icon,
-  'a-menu-divider': Menu.Divider,
-  'a-menu': Menu,
-  }
-  })
+    'a-badge': Badge,
+    'a-dropdown': Dropdown,
+    'a-menu-item': Menu.Item,
+    'a-breadcrumb': Breadcrumb,
+    'a-breadcrumb-item': Breadcrumb.Item,
+    'a-popover': Popover,
+    'menu-list': MenuList,
+    'a-icon': Icon,
+    'a-menu-divider': Menu.Divider,
+    'a-menu': Menu,
+  },
+})
 export default class Header extends Vue {
   @Prop() private username!: string;
+
   // data
   menuData: routerItem[] = [];
+
   breadList: breadItem[] = [];
+
   onIndex: number = 0;
 
   @Watch('$route', { immediate: true, deep: true })
@@ -39,6 +46,7 @@ export default class Header extends Vue {
     this.breadList = [];
     this.routerBread(this.menuData, toDepth.routeArr);
   }
+
   @Watch('menuData')
   initRouteBread() {
     const toDepth = routeToArray(this.$route.path);
@@ -78,10 +86,12 @@ export default class Header extends Vue {
         break;
     }
   }
+
   @Emit()
   switchSidebar(): void {
     this.$store.dispatch('ToggleSideBar');
   }
+
   render() {
     const { username } = this;
     const { menuData, sidebar: { opened }, isMobile } = this.$store.state.app;
@@ -100,8 +110,8 @@ export default class Header extends Vue {
           </a-popover> : <i class={`menu-btn iconfont-${opened ? 'indent' : 'outdent'}`} on-click={this.switchSidebar}></i>
           }
           {
-            isMobile ? null :
-            <a-breadcrumb class="header-bread" separator="/">
+            isMobile ? null
+              : <a-breadcrumb class="header-bread" separator="/">
               {
                 this.breadList.map((item: breadItem) => <a-breadcrumb-item to={item.url ? { path: '/' } : null}>{item.text}</a-breadcrumb-item>)
               }

@@ -14,11 +14,11 @@ import './index.less';
 @Component({
   name: 'Mixed',
   components: {
-  'a-row': Row,
-  'a-col': Col,
-  'a-card': Card,
-  }
-  })
+    'a-row': Row,
+    'a-col': Col,
+    'a-card': Card,
+  },
+})
 export default class Mixed extends Vue {
   itemLayout = {
     xxl: 12,
@@ -29,9 +29,13 @@ export default class Mixed extends Vue {
   }
 
   lineColumnMixedChart: any = null;
+
   multipleYaxisMixedChart: any = null;
+
   lineAreaMixedChart: any = null;
+
   allMixedChart: any = null;
+
   mounted() {
     loadApexCharts().then(() => {
       this.lineColumnMixedChart = new window.ApexCharts(
@@ -56,6 +60,7 @@ export default class Mixed extends Vue {
       this.allMixedChart.render();
     });
   }
+
   render() {
     return (
       <div class="mixed-wrap">

@@ -25,11 +25,13 @@
     "babel-plugin-import": "^1.11.0",
     "body-parser": "^1.18.3",
     "chart.js": "^2.7.3",
+    "constants": "^0.0.2",
     "cookies": "^0.7.3",
     "extract-text-webpack-plugin": "^3.0.2",
     "js-cookie": "^2.2.0",
     "jsonp": "^0.2.1",
     "lodash": "^4.17.11",
+    "mock": "^0.1.1",
     "mockjs": "^1.0.1-beta3",
     "moment": "^2.24.0",
     "path-to-regexp": "^3.0.0",
@@ -43,6 +45,8 @@
     "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "@types/chart.js": "^2.7.45",
+    "@types/js-cookie": "^2.2.1",
     "@types/jsonp": "^0.2.0",
     "@types/lodash": "^4.14.121",
     "@types/qs": "^6.5.1",

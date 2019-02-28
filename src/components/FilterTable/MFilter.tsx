@@ -28,6 +28,9 @@ import './MFilter.less';
     'a-checkbox-group': Checkbox.Group,
     'a-checkbox': Checkbox,
   },
+  props: {
+    Form,
+  },
 })
 
 class MFilterClass extends Vue {
@@ -105,15 +108,15 @@ class MFilterClass extends Vue {
   // methods
   @Emit()
   onSearch(): void {
-    this.$emit('search', Object.assign(this.params, this.form.getFieldsValue()));
+    this.$emit('search', Object.assign(this.params, this.Form.getFieldsValue()));
   }
 
   @Emit()
   reset(): void {
-    this.form.resetFields();
+    this.Form.resetFields();
     this.$emit('clearOut');
     this.params = JSON.parse(JSON.stringify(this.initParams));
-    this.$emit('search', this.form.resetFields());
+    this.$emit('search', this.Form.resetFields());
   }
 
   @Emit()
@@ -290,7 +293,7 @@ class MFilterClass extends Vue {
   }
 
   render() {
-    const { getFieldDecorator } = this.form as any;
+    const { getFieldDecorator } = this.Form as any;
     const { isMobile } = this.$store.state.app;
     return (
       <div class={`filter-wrap ${this.showGrade ? 'showGrade' : ''}`}>

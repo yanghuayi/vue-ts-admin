@@ -17,11 +17,11 @@ import './index.less';
 @Component({
   name: 'Bar',
   components: {
-  'a-row': Row,
-  'a-col': Col,
-  'a-card': Card,
-  }
-  })
+    'a-row': Row,
+    'a-col': Col,
+    'a-card': Card,
+  },
+})
 export default class Bar extends Vue {
   itemLayout = {
     xxl: 12,
@@ -32,12 +32,19 @@ export default class Bar extends Vue {
   }
 
   basicBarChart: any = null;
+
   groupedBarChart: any = null;
+
   stackedBarChart: any = null;
+
   fullStackedBarChart: any = null;
+
   negativeBarChart: any = null;
+
   patternBarChart: any = null;
+
   imageFillBarChart: any = null;
+
   mounted() {
     loadApexCharts().then(() => {
       this.basicBarChart = new window.ApexCharts(
@@ -77,6 +84,7 @@ export default class Bar extends Vue {
       this.imageFillBarChart.render();
     });
   }
+
   render() {
     return (
       <div class="bar-wrap">

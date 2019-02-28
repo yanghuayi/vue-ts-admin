@@ -68,7 +68,7 @@ headers?: any,
         resolve({ statusText: 'OK', status: 200, data: result });
       });
     });
-  } else if (fetchType === 'YQL') {
+  } if (fetchType === 'YQL') {
     url = `http://query.yahooapis.com/v1/public/yql?q=select * from json where url='${options.url}?${encodeURIComponent(qs.stringify(options.data))}'&format=json`;
   } else if (fetchType === 'JSON') {
     return service({

@@ -1,6 +1,6 @@
 interface Window {
   api: any,
-  Fetch: any,
+  ajax: any,
   ApexCharts: any,
   BMap: any,
   BMapLib: any,
@@ -25,15 +25,4 @@ interface returnData {
   data: any,
 }
 
-declare module 'ant-design-vue/lib/locale-provider/zh_CN' {
-  const zh_CN: any;
-  export default zh_CN;
-}
-
 declare module '*.json'
-
-declare module 'vue/types/vue' {
-  interface Vue {
-    form: any;
-  }
-}

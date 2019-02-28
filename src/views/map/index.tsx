@@ -1,7 +1,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component({
-  name: 'Map'
+  name: 'Map',
 })
 export default class Map extends Vue {
   render() {

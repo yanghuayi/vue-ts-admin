@@ -1,4 +1,6 @@
-import { Component, Prop, Emit, Vue, Inject, Provide } from 'vue-property-decorator';
+import {
+  Component, Prop, Emit, Vue, Inject, Provide,
+} from 'vue-property-decorator';
 import { LocaleProvider } from 'ant-design-vue';
 import zh_CN from 'ant-design-vue/lib/locale-provider/zh_CN';
 import 'moment/locale/zh-cn';
@@ -8,10 +10,10 @@ import './App.less';
 
 @Component({
   components: {
-  'loader': Loader,
-  'a-locale-provider': LocaleProvider,
-  }
-  })
+    loader: Loader,
+    'a-locale-provider': LocaleProvider,
+  },
+})
 export default class App extends Vue {
   created() {
     this.isMobile();
@@ -19,6 +21,7 @@ export default class App extends Vue {
       this.isMobile();
     };
   }
+
   // 屏幕width 是否 < 768
   isMobile() {
     const { isMobile } = this.$store.state.app;
@@ -30,6 +33,7 @@ export default class App extends Vue {
       this.$store.dispatch('ChangeMobile', true);
     }
   }
+
   render() {
     const self = this;
     return (

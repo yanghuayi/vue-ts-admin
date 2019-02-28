@@ -35,7 +35,7 @@ module.exports = {
           if ({}.hasOwnProperty.call(item, key)) {
             if (key === 'address') {
               return other[key].every(iitem => item[key].indexOf(iitem) > -1);
-            } else if (key === 'startTime' || key === 'endTime') {
+            } if (key === 'startTime' || key === 'endTime') {
               const start = new Date(other.startTime).getTime();
               const end = new Date(other.endTime).getTime();
               const now = new Date(item[key]).getTime();
@@ -94,4 +94,3 @@ module.exports = {
     res.json(baseData('success', '新增成功！'));
   },
 };
-

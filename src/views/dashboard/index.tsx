@@ -1,5 +1,7 @@
 import { Component, Vue, Emit } from 'vue-property-decorator';
-import { Button, DatePicker, Modal, Row, Col, Card, Icon, Radio } from 'ant-design-vue';
+import {
+  Button, DatePicker, Modal, Row, Col, Card, Icon, Radio,
+} from 'ant-design-vue';
 import Chart from 'chart.js';
 import { numFormat } from '@/utils/index';
 
@@ -8,19 +10,20 @@ import './index.less';
 @Component({
   name: 'Dashboard',
   components: {
-  'a-button': Button,
-  'a-date-picker': DatePicker,
-  'a-radio-group': Radio.Group,
-  'a-radio-button': Radio.Button,
-  'a-modal': Modal,
-  'a-row': Row,
-  'a-col': Col,
-  'a-card': Card,
-  'a-icon': Icon,
-  }
-  })
+    'a-button': Button,
+    'a-date-picker': DatePicker,
+    'a-radio-group': Radio.Group,
+    'a-radio-button': Radio.Button,
+    'a-modal': Modal,
+    'a-row': Row,
+    'a-col': Col,
+    'a-card': Card,
+    'a-icon': Icon,
+  },
+})
 export default class Dashboard extends Vue {
   pageData: any = null;
+
   created() {
     window.api.dashboard(null).then((res: returnData) => {
       this.pageData = res.data.entity;
@@ -30,6 +33,7 @@ export default class Dashboard extends Vue {
       }, 200);
     });
   }
+
   init() {
     this.BarChart();
     this.LineChart();
@@ -197,6 +201,7 @@ export default class Dashboard extends Vue {
   }
 
   iconList = ['team', 'shopping-cart', 'pay-circle', 'line-chart']
+
   loading: boolean = true;
 
   render() {
@@ -206,8 +211,7 @@ export default class Dashboard extends Vue {
           <a-col span={10} xxl={10} xl={10} lg={12} md={24} sm={24} xs={24}>
             <a-row gutter={{ xs: 8, md: 12, xl: 20 }}>
               {
-                this.pageData && this.pageData.dataList.map((item: any, index: number) =>
-                <a-col {...{ props: this.ColLayout }} class="sub-item">
+                this.pageData && this.pageData.dataList.map((item: any, index: number) => <a-col {...{ props: this.ColLayout }} class="sub-item">
                   <a-card loading={this.loading} class="dash-card">
                     <h3>{item.name}</h3>
                     <a-icon class="icon" type={this.iconList[index]}></a-icon>
@@ -223,8 +227,7 @@ export default class Dashboard extends Vue {
                 </a-col>)
               }
               {
-                !this.pageData && this.iconList.map((item: any) =>
-                <a-col {...{ props: this.ColLayout }} class="sub-item">
+                !this.pageData && this.iconList.map((item: any) => <a-col {...{ props: this.ColLayout }} class="sub-item">
                   <a-card loading={this.loading} class="dash-card" style="height: 160px">
                     ............
                   </a-card>

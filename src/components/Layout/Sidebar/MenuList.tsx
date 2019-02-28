@@ -1,4 +1,6 @@
-import { Component, Emit, Vue, Prop, Watch } from 'vue-property-decorator';
+import {
+  Component, Emit, Vue, Prop, Watch,
+} from 'vue-property-decorator';
 import { Menu, Icon } from 'ant-design-vue';
 import { routerItem } from '@/interface';
 import { routeToArray } from '@/utils/index';
@@ -6,18 +8,20 @@ import './MenuList.less';
 
 @Component({
   components: {
-  'a-menu': Menu,
-  'a-submenu': Menu.SubMenu,
-  'a-menu-item-group': Menu.ItemGroup,
-  'a-menu-item': Menu.Item,
-  'a-icon': Icon,
-  }
-  })
+    'a-menu': Menu,
+    'a-submenu': Menu.SubMenu,
+    'a-menu-item-group': Menu.ItemGroup,
+    'a-menu-item': Menu.Item,
+    'a-icon': Icon,
+  },
+})
 export default class MenuList extends Vue {
   @Prop({ default: '#010101' }) private bgColor!: string;
+
   @Prop({ default: '#fff' }) private txtColor!: string;
 
   keys: string[] = []
+
   openKeys: string[] = []
 
   @Watch('$route', { immediate: true, deep: true })
@@ -52,6 +56,7 @@ export default class MenuList extends Vue {
       </a-menu>
     );
   }
+
   renderMenu(menuData: routerItem[], parentPath?: string): (JSX.Element | null)[] {
     return menuData.map((item: routerItem) => {
       if (item.children) {
@@ -78,7 +83,7 @@ export default class MenuList extends Vue {
           </template>
           {this.renderMenu(item.children, parentPath ? `${parentPath}/${item.path}` : item.path)}
         </a-submenu>;
-      } else if (item.hidden) {
+      } if (item.hidden) {
         return null;
       }
       return <a-menu-item
@@ -89,6 +94,7 @@ export default class MenuList extends Vue {
       </a-menu-item>;
     });
   }
+
   openPage(path: string) {
     this.$router.push(path);
   }

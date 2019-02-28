@@ -1,30 +1,32 @@
 import { Component, Vue } from 'vue-property-decorator';
-import { Form, Input, Select, Radio, Card, Dropdown, Menu, Icon, DatePicker, Button, Modal } from 'ant-design-vue';
+import {
+  Form, Input, Select, Radio, Card, Dropdown, Menu, Icon, DatePicker, Button, Modal,
+} from 'ant-design-vue';
 
 import './index.less';
 
 @Component({
   name: 'baseForm',
   components: {
-  'a-form': Form,
-  'a-form-item': Form.Item,
-  'a-input': Input,
-  'a-select': Select,
-  'a-radio': Radio,
-  'a-radio-group': Radio.Group,
-  'a-card': Card,
-  'a-dropdown': Dropdown,
-  'a-menu': Menu,
-  'a-menu-item': Menu.Item,
-  'a-icon': Icon,
-  'a-date-picker': DatePicker,
-  'a-button': Button,
-  'a-modal': Modal,
+    'a-form': Form,
+    'a-form-item': Form.Item,
+    'a-input': Input,
+    'a-select': Select,
+    'a-radio': Radio,
+    'a-radio-group': Radio.Group,
+    'a-card': Card,
+    'a-dropdown': Dropdown,
+    'a-menu': Menu,
+    'a-menu-item': Menu.Item,
+    'a-icon': Icon,
+    'a-date-picker': DatePicker,
+    'a-button': Button,
+    'a-modal': Modal,
   },
   props: {
-  Form,
-  }
-  })
+    Form,
+  },
+})
 
 class BaseForm extends Vue {
   itemLayout = {

@@ -16,7 +16,7 @@ function filterAsyncRouter(
   const routerMap = AsyncRouterMap.filter((item) => {
     if (typeof item.permission === 'string') {
       return permission.indexOf(item.permission) > -1;
-    } else if (item.permission instanceof Array) {
+    } if (item.permission instanceof Array) {
       const filter = item.permission.filter(items => permission.indexOf(items) > -1);
       if (filter.length && item.children) {
         item.children = filterAsyncRouter(item.children, permission);

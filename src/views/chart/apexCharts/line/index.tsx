@@ -20,11 +20,11 @@ import './index.less';
 @Component({
   name: 'Line',
   components: {
-  'a-row': Row,
-  'a-col': Col,
-  'a-card': Card,
-  }
-  })
+    'a-row': Row,
+    'a-col': Col,
+    'a-card': Card,
+  },
+})
 export default class Line extends Vue {
   itemLayout = {
     xxl: 12,
@@ -35,14 +35,23 @@ export default class Line extends Vue {
   }
 
   lineChart: any = null;
+
   lineChartDatalabel: any = null;
+
   lineChartZoomable: any = null;
+
   lineChartAnnotationsChart: any = null;
+
   lineChartSyncingChart: any = null;
+
   lineChartSyncing2Chart: any = null;
+
   lineChartGradientChart: any = null;
+
   lineChartMissingChart: any = null;
+
   lineChartDashedChart: any = null;
+
   lineChartRealtimedChart: any = null;
 
   timer: any = null;

@@ -728,6 +728,16 @@
     error-stack-parser "^2.0.0"
     string-width "^2.0.0"
 
+"@types/chart.js@^2.7.45":
+  version "2.7.45"
+  resolved "http://registry.npm.taobao.org/@types/chart.js/download/@types/chart.js-2.7.45.tgz#9ca59c3f39567ddd74cf9440488c84394c56dceb"
+  integrity sha1-nKWcPzlWfd10z5RASIyEOUxW3Os=
+
+"@types/js-cookie@^2.2.1":
+  version "2.2.1"
+  resolved "http://registry.npm.taobao.org/@types/js-cookie/download/@types/js-cookie-2.2.1.tgz#aa6f6d5e5aaf7d97959e9fa938ac2501cf1a76f4"
+  integrity sha1-qm9tXlqvfZeVnp+pOKwlAc8advQ=
+
 "@types/jsonp@^0.2.0":
   version "0.2.0"
   resolved "http://registry.npm.taobao.org/@types/jsonp/download/@types/jsonp-0.2.0.tgz#2579c5e4dfa6b2617bda18a5d368db2dbfe132a8"
@@ -2457,6 +2467,11 @@ constants-browserify@^1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/constants-browserify/download/constants-browserify-1.0.0.tgz#c20b96d8c617748aaf1c16021760cd27fcb8cb75"
   integrity sha1-wguW2MYXdIqvHBYCF2DNJ/y4y3U=
+
+constants@^0.0.2:
+  version "0.0.2"
+  resolved "http://registry.npm.taobao.org/constants/download/constants-0.0.2.tgz#f973bcf3b69b6493b3b3645723124fbabce25094"
+  integrity sha1-+XO887abZJOzs2RXIxJPurziUJQ=
 
 contains-path@^0.1.0:
   version "0.1.0"
@@ -5917,6 +5932,11 @@ mocha-nightwatch@3.2.2:
     lodash.create "3.1.1"
     mkdirp "0.5.1"
     supports-color "3.1.2"
+
+mock@^0.1.1:
+  version "0.1.1"
+  resolved "http://registry.npm.taobao.org/mock/download/mock-0.1.1.tgz#e7e3589c7e6b3376d69f5a3e470b56604417c633"
+  integrity sha1-5+NYnH5rM3bWn1o+RwtWYEQXxjM=
 
 mockjs@^1.0.1-beta3:
   version "1.0.1-beta3"

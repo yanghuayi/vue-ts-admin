@@ -1,4 +1,6 @@
-import { Component, Prop, Emit, Vue, Watch, Provide } from 'vue-property-decorator';
+import {
+  Component, Prop, Emit, Vue, Watch, Provide,
+} from 'vue-property-decorator';
 import { Tabs } from 'ant-design-vue';
 import config from '@/utils/config';
 import { menuItem } from '@/interface';
@@ -9,12 +11,13 @@ import './AppMain.less';
 
 @Component({
   components: {
-  'a-tabs': Tabs,
-  'a-tab-pane': Tabs.TabPane,
-  }
-  })
+    'a-tabs': Tabs,
+    'a-tab-pane': Tabs.TabPane,
+  },
+})
 export default class AppMain extends Vue {
   @Prop() private menuData!: menuItem[];
+
   // data
   onTabs: any = '1';
 
@@ -28,6 +31,7 @@ export default class AppMain extends Vue {
     console.log(this);
     this.$store.dispatch('RemoveTab', name);
   }
+
   @Emit()
   tabChange(name: any) {
     this.tabList.forEach((item: any, indexs: number) => {
@@ -37,6 +41,7 @@ export default class AppMain extends Vue {
       }
     });
   }
+
   @Emit()
   onTabEdit(targetKey: string, action: string) {
     if (action === 'remove') {

@@ -12,10 +12,10 @@ import './index.less';
 @Component({
   name: 'BaseInfo',
   components: {
-  'a-tag': Tag,
-  'info-modal': InfoModal,
-  }
-  })
+    'a-tag': Tag,
+    'info-modal': InfoModal,
+  },
+})
 export default class BaseInfo extends Vue {
   filterParams: any = {
     name: '',
@@ -24,6 +24,7 @@ export default class BaseInfo extends Vue {
     startTime: '',
     endTime: '',
   }
+
   BackParams: any = {
     code: 'data.result.resultCode',
     codeOK: 0,
@@ -31,7 +32,9 @@ export default class BaseInfo extends Vue {
     data: 'data.entity.data',
     total: 'data.entity.total',
   }
+
   outParams: any = {}
+
   filterList: FilterFormList[] = [
     {
       key: 'name',
@@ -54,6 +57,7 @@ export default class BaseInfo extends Vue {
       value: ['startTime', 'endTime'],
     },
   ]
+
   tableList: tableList[] = [
     {
       title: 'Name',
@@ -93,6 +97,7 @@ export default class BaseInfo extends Vue {
       dataIndex: 'address',
     },
   ]
+
   opreat: Opreat[] = [
     {
       key: 'edit',
@@ -112,8 +117,11 @@ export default class BaseInfo extends Vue {
   ]
 
   title: string = 'add customer'
+
   visible: boolean = false
+
   modelType: string = 'add'
+
   editData: object = {}
 
   genderRender(text: any) {

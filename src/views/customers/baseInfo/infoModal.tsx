@@ -1,29 +1,35 @@
 import { Vue, Component, Prop } from 'vue-property-decorator';
-import { Modal, Form, Input, Radio, DatePicker, InputNumber, Cascader } from 'ant-design-vue';
+import {
+  Modal, Form, Input, Radio, DatePicker, InputNumber, Cascader,
+} from 'ant-design-vue';
 import moment from 'moment';
 import city from '@/utils/city';
 
 @Component({
   components: {
-  'a-modal': Modal,
-  'a-form': Form,
-  'a-form-item': Form.Item,
-  'a-input': Input,
-  'a-input-number': InputNumber,
-  'a-radio': Radio,
-  'a-radio-group': Radio.Group,
-  'a-date-picker': DatePicker,
-  'a-cascader': Cascader,
+    'a-modal': Modal,
+    'a-form': Form,
+    'a-form-item': Form.Item,
+    'a-input': Input,
+    'a-input-number': InputNumber,
+    'a-radio': Radio,
+    'a-radio-group': Radio.Group,
+    'a-date-picker': DatePicker,
+    'a-cascader': Cascader,
   },
   props: {
-  Form,
-  }
-  })
+    Form,
+  },
+})
 class InfoModal extends Vue {
   @Prop() title!: string;
+
   @Prop() visible!: boolean;
+
   @Prop() type!: string;
+
   @Prop() data!: any;
+
   formItemLayout = {
     labelCol: {
       xs: { span: 24 },
@@ -36,7 +42,7 @@ class InfoModal extends Vue {
   }
 
   submit() {
-    this.Form.validateFields((err: any, values: any) => {
+    this.Form.validateFields([], {}, (err: any, values: any) => {
       if (!err) {
         if (this.type === 'add') {
           window.api.baseInfoAdd(values).then((res: any) => {

@@ -19,11 +19,11 @@ import './index.less';
 @Component({
   name: 'Area',
   components: {
-  'a-row': Row,
-  'a-col': Col,
-  'a-card': Card,
-  }
-  })
+    'a-row': Row,
+    'a-col': Col,
+    'a-card': Card,
+  },
+})
 export default class Area extends Vue {
   itemLayout = {
     xxl: 12,
@@ -34,13 +34,21 @@ export default class Area extends Vue {
   }
 
   basicAreaChart: any = null;
+
   splineAreaChart: any = null;
+
   areaChartDatetimeChart: any = null;
+
   areaChartNegativeChart: any = null;
+
   areaChartGithubChart: any = null;
+
   areaChartGithub2Chart: any = null;
+
   stackedAreaChart: any = null;
+
   areaTimeSeriesChart: any = null;
+
   areaChartNullvaluesChart: any = null;
 
   mounted() {
@@ -110,6 +118,7 @@ export default class Area extends Vue {
       this.areaChartNullvaluesChart.render();
     });
   }
+
   render() {
     return (
       <div class="area-wrap">
