@@ -35,7 +35,7 @@ export default class MTable extends Vue {
       data: 'entity.data',
       total: 'entity.count',
     }),
-  }) private BackParams!: {
+  }) private backParams!: {
     code: string,
     message: string,
     data: string,
@@ -109,6 +109,9 @@ export default class MTable extends Vue {
     this.getData();
   }
 
+  /**
+   * @method 获取表格数据
+   */
   getData() {
     this.loading = true;
     window.ajax.request({
@@ -122,20 +125,26 @@ export default class MTable extends Vue {
       ),
     }).then((res: any) => {
       this.loading = false;
-      const code = this.getValue(this.BackParams.code, res);
-      if (code === this.BackParams.codeOK) {
-        this.tableData = this.getValue(this.BackParams.data, res);
-        this.dataTotal = this.getValue(this.BackParams.total, res)
-          ? this.getValue(this.BackParams.total, res) : 0;
+      const code = this.getValue(this.backParams.code, res);
+      if (code === this.backParams.codeOK) {
+        this.tableData = this.getValue(this.backParams.data, res);
+        this.dataTotal = this.getValue(this.backParams.total, res)
+          ? this.getValue(this.backParams.total, res) : 0;
       } else {
-        this.$message.error(this.getValue(this.BackParams.message, res));
+        this.$message.error(this.getValue(this.backParams.message, res));
       }
     });
   }
 
-  getValue(position: string, data: any) {
+  /**
+   * @method 根据backParams参数，获取对应值
+   * @param {string} position 需要值的位置, 格式为 data.entity.list
+   * @param {object} res 返回的表格数据
+   */
+  getValue(position: string, res: any) {
+    let data = JSON.parse(JSON.stringify(res));
     const keyList = position.split('.');
-    keyList.forEach((item) => {
+    keyList.forEach((item, index) => {
       if (data !== null && data[item] !== null) {
         data = data[item];
       } else {
@@ -191,7 +200,14 @@ export default class MTable extends Vue {
     );
   }
 
+  /**
+   * @method 操作栏的渲染函数，参数对应antd的Columns>customRender的参数
+   * @param {any} text 当前列的值
+   * @param {object} record 当前行的值
+   * @param {number} index 当前列的序列号
+   */
   opreatJSX(text: any, record: any, index: number) {
+    // 操作超过4个，就用下拉菜单方式
     if (this.opreat.length > 4) {
       return <a-dropdown on-command={(command: string) => this.menuClick(command, record)}>
         <a-button type="dashed" size="small" style="margin-left: 8px">
@@ -210,6 +226,7 @@ export default class MTable extends Vue {
         </a-menu>
       </a-dropdown>;
     }
+    // 普通模式
     return <div class="table-opreat">
       {
         this.opreat.map((item, indexs) => {

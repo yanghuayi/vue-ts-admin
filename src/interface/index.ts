@@ -1,7 +1,19 @@
 import { VNode } from 'vue';
 import { ScopedSlot } from 'vue/types/vnode';
 
-// 筛选表单
+/**
+ * @interface 筛选表格的表单参数
+ * @param key 表单的key值，对应filterParams里面的值
+ * @param type 表单的类型，分为10种
+ * @param label 表单前面的标题文字
+ * @param placeholder 表单的占位文字
+ * @param value 用于范围选择或者多个值的情况，
+ * @param fieldNames antd的cascader组件的，自定义 options 中 label name children 的字段
+ * https://vue.ant.design/components/cascader-cn/#API
+ * @param options 用于下拉选择的选择项，可以异步加载
+ * @param change 表单的change事件
+ * @param disabledTime 时间范围选择的不可选日期，
+ */
 type FilterType = 'input' | 'select' | 'cascader' | 'levelcode' | 'datetime' | 'date' | 'datetimerange' | 'checkboxButton';
 export interface FilterFormList {
   key: string;
@@ -206,7 +218,15 @@ export interface tableList {
    */
   scopedSlots?: object;
 }
-// 操作
+/**
+ * @interface 表格组件-操作栏参数
+ * @param {string} key 操作的key值，用于回调事件匹配
+ * @param {string} rowKey 当前行数据的id值，用于自动化测试，方便区别
+ * @param {Function/string} color 文字颜色，可以根据当前行数据动态返回颜色值
+ * @param {string} text 可以根据当前行数据动态返回文字
+ * @param {Function} disabled 可以根据当前数据动态返回状态
+ * @param {Function/string} roles 可以动态返回权限，控制是否展示
+ */
 export interface Opreat {
   key: string,
   rowKey: string,
@@ -216,7 +236,10 @@ export interface Opreat {
   roles: Function | boolean,
   msg?: Function | string,
 }
-// 表格数据
+/**
+ * @interface 表格tag设置
+ * @param {} key
+ */
 export interface tableTag {
   key: number,
   color: string,

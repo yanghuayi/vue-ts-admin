@@ -180,7 +180,7 @@ export default class BaseInfo extends Vue {
           rowKey={'id'}
           opreat={this.opreat}
           fetchType={'post'}
-          BackParams={this.BackParams}
+          backParams={this.BackParams}
           on-menuClick={this.tableClick}
           on-add={this.add}
         >

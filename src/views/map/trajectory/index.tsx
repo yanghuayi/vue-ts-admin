@@ -1,4 +1,5 @@
 import { Component, Vue } from 'vue-property-decorator';
+import moment from 'moment';
 import {
   Button, Slider, Select, Tooltip,
 } from 'ant-design-vue';
@@ -100,7 +101,7 @@ export default class Trajectory extends Vue {
     const date = new Date(time);
     const str = date.getTime() + (8 * 60 * 60 * 1000); // 转换成时间戳+8小时
     const nowDate = new Date(str);
-    return nowDate.Format('yyyy-MM-dd hh:mm:ss');
+    return moment(nowDate).format('yyyy-MM-dd hh:mm:ss');
   }
 
   /**
@@ -419,14 +420,14 @@ export default class Trajectory extends Vue {
         break;
       case 3:
         speed -= 75;
-        red = 255 + Math.ceil(((22 - 255) / 25) * speed);
-        green = 200 + Math.ceil(((191 - 200) / 25) * speed);
-        blue = 48 + Math.ceil(((43 - 0) / 25) * speed);
+        red = 85 + Math.ceil(((22 - 85) / 25) * speed);
+        green = 170 + Math.ceil(((191 - 170) / 25) * speed);
+        blue = 0 + Math.ceil(((85 - 0) / 25) * speed);
         break;
       case 4:
-        red = 22;
-        green = 191;
-        blue = 43;
+        red = 85;
+        green = 170;
+        blue = 85;
         break;
       default: break;
     }

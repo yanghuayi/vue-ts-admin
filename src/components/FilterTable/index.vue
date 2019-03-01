@@ -25,7 +25,7 @@
       :opreat="opreat"
       :out-params="outParams"
       :opreat-width="opreatWidth"
-      :back-params="BackParams"
+      :back-params="backParams"
       :local-name="localName"
       :fetch-type="fetchType"
       :fetch-error="fetchError"
@@ -104,7 +104,7 @@ export default class FilterTable extends Vue {
   @Prop({ default: 10 }) private defaultPageSize!: number;
 
   // 数据返回格式
-  @Prop() private BackParams!: object;
+  @Prop() private backParams!: object;
 
   // 请求数据方法
   @Prop({ default: 'json' }) private fetchType!: string;
