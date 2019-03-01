@@ -53,7 +53,7 @@ export const loadApexCharts = () => new Promise(((resolve, reject) => {
   }
   const script: any = document.createElement('script');
   script.type = 'text/javascript';
-  script.src = '/apexcharts.js';
+  script.src = '/apexcharts.min.js';
   script.onerror = reject;
   const { head } = document;
   if (head) {
