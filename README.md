@@ -2,7 +2,7 @@
 
   > 一个基于`typesciprt` + `vue` + `vue-cli@3.4.1`的中台管理系统
 
-## [演示地址(http://vue-ts-admin.cqmimi.club/)](http://vue-ts-admin.cqmimi.club/)
+## [演示地址(https://vue-ts-admin.cqmimi.club/)](https://vue-ts-admin.cqmimi.club/)
 
 ### 特点
   1. 基于`typescript`, 代码更加健壮，出bug几率更小
