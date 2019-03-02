@@ -14,5 +14,7 @@
 
 ### 项目截图
 
+![perview](/perview/vue-ts-admin.gif)
+
 
 

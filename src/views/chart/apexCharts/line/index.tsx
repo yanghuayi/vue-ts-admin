@@ -73,7 +73,6 @@ export default class Line extends Vue {
         lineChartZoomableOptions,
       );
       this.lineChartZoomable.render();
-      this.lineChartDatalabel.render();
       this.lineChartAnnotationsChart = new window.ApexCharts(
         document.querySelector('#line-chart-annotations'),
         lineChartAnnotationsOptions,
