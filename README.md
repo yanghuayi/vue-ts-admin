@@ -17,4 +17,7 @@
 ![perview](/perview/vue-ts-admin.gif)
 
 
+![perview](/perview/vue-ts-admin-mobile.gif)
+
+
 
