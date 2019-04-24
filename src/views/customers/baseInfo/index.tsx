@@ -8,7 +8,6 @@ import InfoModal from './infoModal';
 
 import './index.less';
 
-
 @Component({
   name: 'BaseInfo',
   components: {
@@ -23,7 +22,7 @@ export default class BaseInfo extends Vue {
     createtime: [],
     startTime: '',
     endTime: '',
-  }
+  };
 
   BackParams: any = {
     code: 'data.result.resultCode',
@@ -31,9 +30,9 @@ export default class BaseInfo extends Vue {
     message: 'data.result.resultMessage',
     data: 'data.entity.data',
     total: 'data.entity.total',
-  }
+  };
 
-  outParams: any = {}
+  outParams: any = {};
 
   filterList: FilterFormList[] = [
     {
@@ -56,7 +55,7 @@ export default class BaseInfo extends Vue {
       placeholder: ['start date', 'end date'],
       value: ['startTime', 'endTime'],
     },
-  ]
+  ];
 
   tableList: tableList[] = [
     {
@@ -96,7 +95,7 @@ export default class BaseInfo extends Vue {
       title: 'Address',
       dataIndex: 'address',
     },
-  ]
+  ];
 
   opreat: Opreat[] = [
     {
@@ -114,18 +113,18 @@ export default class BaseInfo extends Vue {
       roles: true,
       msg: '确定删除？',
     },
-  ]
+  ];
 
-  title: string = 'add customer'
+  title: string = 'add customer';
 
-  visible: boolean = false
+  visible: boolean = false;
 
-  modelType: string = 'add'
+  modelType: string = 'add';
 
-  editData: object = {}
+  editData: object = {};
 
   genderRender(text: any) {
-    return <a-tag color={text ? 'blue': 'purple'}>{text ? 'Male' : 'Female'}</a-tag>;
+    return <a-tag color={text ? 'blue' : 'purple'}>{text ? 'Male' : 'Female'}</a-tag>;
   }
 
   tableClick(key: string, row: any) {
@@ -183,8 +182,7 @@ export default class BaseInfo extends Vue {
           backParams={this.BackParams}
           on-menuClick={this.tableClick}
           on-add={this.add}
-        >
-        </filter-table>
+        />
         <info-modal
           title={this.title}
           visible={this.visible}
@@ -192,8 +190,7 @@ export default class BaseInfo extends Vue {
           data={this.editData}
           on-close={this.closeModal}
           on-success={this.success}
-          >
-        </info-modal>
+        />
       </div>
     );
   }
