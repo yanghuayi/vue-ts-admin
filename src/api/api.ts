@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosPromise, AxiosInstance } from 'axios';
 import qs from 'qs';
 import jsonp from 'jsonp';
 import lodash from 'lodash';
@@ -7,27 +7,27 @@ import { message } from 'ant-design-vue';
 
 interface ApiList {
   [key: string]: {
-    url: string, // 请求地址
-    fetchType?: string, // 数据格式，支持json,formData
-    method?: string, // 请求方法
-    headers?: any // 头部携带信息
-  }
+    url: string; // 请求地址
+    fetchType?: string; // 数据格式，支持json,formData
+    method?: string; // 请求方法
+    headers?: any; // 头部携带信息
+  };
 }
 
 interface Options {
-  data: any,
-  url: string,
-  fetchType?: string,
-  method?: string,
-  headers?: any
+  data: any;
+  url: string;
+  fetchType?: string;
+  method?: string;
+  headers?: any;
 }
 
-interface Apis {
-  [key: string]: any
+interface Apis<T> {
+  [key: string]: (data: object) => Promise<T>;
 }
 
 export default class Api {
-  service: any = null
+  service: AxiosInstance;
 
   // 请求列表，在这里添加相应接口
   apiList: ApiList = {
@@ -71,10 +71,10 @@ export default class Api {
       method: 'get',
       fetchType: 'jsonp',
     },
-  }
+  };
 
   // 对外暴露方法
-  api: Apis = {}
+  api: Apis<any> = {};
 
   constructor(options: { baseUrl: string }) {
     axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded';
@@ -108,43 +108,45 @@ export default class Api {
     }
   }
 
-  request = (options: Options) => this.fetch(options).then((response: any) => {
-    const { statusText, status } = response;
-    let { data } = response;
-    if (data instanceof Array) {
-      data = {
-        list: data,
-      };
-    }
-    // 登录超时判断
-    if (response.data.result && response.data.result.resultCode === 3) {
-      router.replace({ name: 'login' });
-      return Promise.reject({
-        success: false,
-        message: response.data.result.resultMessage,
+  request = (options: Options) => this.fetch(options)
+    .then((response: any) => {
+      const { statusText, status } = response;
+      let { data } = response;
+      if (data instanceof Array) {
+        data = {
+          list: data,
+        };
+      }
+      // 登录超时判断
+      if (response.data.result && response.data.result.resultCode === 3) {
+        router.replace({ name: 'login' });
+        return Promise.reject({
+          success: false,
+          message: response.data.result.resultMessage,
+        });
+      }
+      return Promise.resolve({
+        success: true,
+        message: statusText,
+        statusCode: status,
+        data,
       });
-    }
-    return Promise.resolve({
-      success: true,
-      message: statusText,
-      statusCode: status,
-      data,
+    })
+    .catch((error: any) => {
+      const { response } = error;
+      let msg;
+      let statusCode;
+      if (response && response instanceof Object) {
+        const { data, statusText } = response;
+        statusCode = response.status;
+        msg = data.message || statusText;
+      } else {
+        statusCode = 600;
+        msg = error.message || 'Network Error';
+      }
+      message.error(msg);
+      return Promise.reject({ success: false, statusCode, message: msg });
     });
-  }).catch((error: any) => {
-    const { response } = error;
-    let msg;
-    let statusCode;
-    if (response && response instanceof Object) {
-      const { data, statusText } = response;
-      statusCode = response.status;
-      msg = data.message || statusText;
-    } else {
-      statusCode = 600;
-      msg = error.message || 'Network Error';
-    }
-    message.error(msg);
-    return Promise.reject({ success: false, statusCode, message: msg });
-  })
 
   fetch = (options: Options) => {
     const {
@@ -159,18 +161,23 @@ export default class Api {
 
     if (fetchType === 'jsonp') {
       return new Promise((resolve, reject) => {
-        jsonp(url, {
-          param: `${qs.stringify(data)}&callback`,
-          name: `jsonp_${new Date().getTime()}`,
-          timeout: 4000,
-        }, (error, result) => {
-          if (error) {
-            reject(error);
-          }
-          resolve({ statusText: 'OK', status: 200, data: result });
-        });
+        jsonp(
+          url,
+          {
+            param: `${qs.stringify(data)}&callback`,
+            name: `jsonp_${new Date().getTime()}`,
+            timeout: 4000,
+          },
+          (error, result) => {
+            if (error) {
+              reject(error);
+            }
+            resolve({ statusText: 'OK', status: 200, data: result });
+          },
+        );
       });
-    } if (fetchType === 'json') {
+    }
+    if (fetchType === 'json') {
       return this.service({
         url,
         method: method.toLowerCase(),
@@ -180,7 +187,8 @@ export default class Api {
         },
         data,
       });
-    } if (fetchType === 'jsonfile') {
+    }
+    if (fetchType === 'jsonfile') {
       return axios.get(url, { headers });
     }
     switch (method.toLowerCase()) {
@@ -189,7 +197,8 @@ export default class Api {
       case 'delete':
         return this.service.delete(url, {
           data: cloneData,
-        }, { headers });
+          headers,
+        });
       case 'post':
         return this.service.post(url, cloneData, { headers });
       case 'put':
@@ -199,5 +208,5 @@ export default class Api {
       default:
         return this.service(options);
     }
-  }
+  };
 }

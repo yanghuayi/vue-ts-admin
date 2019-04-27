@@ -178,4 +178,4 @@ class BaseForm extends Vue {
   }
 }
 
-export default Form.create()(BaseForm);
+export default Form.create({})(BaseForm);
